@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>AiSchool智能校园解决方案</title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+		<link href="css/iCheck/square/blue.css" rel="stylesheet" type="text/css" />
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+		
+		<style>
+		.has-feedback {
+			position: relative;
+		}
+		.has-feedback .form-control {
+			padding-right: 42.5px;
+		}
+		.form-control-feedback {
+			position: absolute;
+			top: 0;
+			right: 0;
+			z-index: 2;
+			display: block;
+			width: 34px;
+			height: 34px;
+			line-height: 34px;
+			text-align: center;
+			pointer-events: none;
+		}
+		.radio, .checkbox {
+			padding-left: 0;
+		}
+		</style>
+    </head>
+    <body class="hold-transition login-page">
+		<div class="login-box">
+		  <div class="login-logo">
+			<b>Ai</b>School
+		  </div>
+		  <div class="login-box-body">
+			<p class="login-box-msg">登录智能校园管理平台</p>
+
+			<form action="index.html" method="post">
+			  <div class="form-group has-feedback">
+				<input type="email" id="account" class="form-control" placeholder="帐号" />
+				<span class="form-control-feedback"><span class="glyphicon glyphicon-envelope"></span></span>
+			  </div>
+			  <div class="form-group has-feedback">
+				<input type="password" id="pwd" class="form-control" placeholder="密码">
+				<span class="form-control-feedback"><span class="glyphicon glyphicon-lock"></span></span>
+			  </div>
+			  <div class="row">
+				<div class="col-xs-8">
+				  <div class="checkbox icheck">
+					<label>
+					  <input type="checkbox"> 记住帐号
+					</label>
+				  </div>
+				</div>
+				<div class="col-xs-4">
+				  <button id="login" type="button" class="btn btn-primary btn-block btn-flat">登录</button>
+				</div>
+			  </div>
+			</form>
+
+		  </div>
+		</div>
+
+
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/plugins/iCheck/icheck.min.js"></script>
+		<script>
+		  $(function () {
+			$('input').iCheck({
+			  checkboxClass: 'icheckbox_square-blue',
+			  radioClass: 'iradio_square-blue',
+			  increaseArea: '20%' /* optional */
+			});
+
+			var server = '/api';
+
+			$('#login').click(function() {
+
+				var username = $('#account').val();
+				var pwd = $('#pwd').val();
+				$.ajax({
+					url:server+'/login.php',
+					type:"POST",
+					dataType:'json',
+        			data: {
+        				// username:'chenzhiquan@qtone.cn',
+        				username:username,
+        				password:pwd
+        			},
+					success:function(res) {
+						console.log(res);
+						if(res.code == 0) {
+							location.href = '/pages/user/parent.html';
+						}
+					}
+				});
+			});
+		  });
+		</script>
+	</body>
+</html>
