@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <!--引入样式文件-->
-    <!-- <link rel="stylesheet" href="static/editor/examples/css/style.css" />
+    <title>H</title>
+
+    <link rel="stylesheet" href="static/editor/examples/css/style.css" />
     <link rel="stylesheet" href="static/editor/css/editormd.preview.css" />
-     -->
-    <!--引入js文件-->
-    <!-- <script src="static/editor/examples/js/jquery.min.js"></script>
+
+    <script src="static/editor/examples/js/jquery.min.js"></script>
     <script src="static/editor/lib/marked.min.js"></script>
     <script src="static/editor/lib/prettify.min.js"></script>
     <script src="static/editor/lib/raphael.min.js"></script>
@@ -18,12 +18,26 @@
     <script src="static/editor/lib/sequence-diagram.min.js"></script>
     <script src="static/editor/lib/flowchart.min.js"></script>
     <script src="static/editor/lib/jquery.flowchart.min.js"></script>
-    <script src="static/editor/editormd.js"></script> -->
+    <script src="static/editor/editormd.js"></script>
 </head>
+
 <body>
-    {$data.md_mdcontent};
-<script type="text/javascript">
-</script>
+    <div id="test">
+        <textarea id="appendTest">{$data.md_mdcontent}</textarea>
+    </div>
+    <script>
+        //markDown转HTMl的方法
+            editormd.markdownToHTML("test", {
+                htmlDecode: "style,script,iframe", //可以过滤标签解码
+                emoji: true,
+                taskList: true,
+                tex: true, // 默认不解析
+                flowChart: true, // 默认不解析
+                sequenceDiagram: true, // 默认不解析
+            });
+
+    </script>
 
 </body>
+
 </html>
