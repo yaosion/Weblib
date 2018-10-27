@@ -8,7 +8,7 @@ class Index extends Controller
 {
     public function index()
     {
-        $data = Db::name('type')->find();
+        $data = Db::name('md')->find();
         $this->assign('data',$data);
         // print_r($data);
         return $this->fetch();
