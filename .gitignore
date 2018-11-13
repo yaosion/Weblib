@@ -1,4 +1,4 @@
-.idea
+﻿.idea
 composer.lock
 *.log
 thinkphp
@@ -1664,3 +1664,5 @@ public/phpgjx/phpMyAdmin-4.4.11/themes/original/img/b_usrcheck.png
 public/phpgjx/phpMyAdmin-4.4.11/themes/original/img/b_usradd.png
 public/phpgjx/phpMyAdmin-4.4.11/themes/original/img/b_unique.png
 public/phpgjx/phpMyAdmin-4.4.11/themes/original/img/b_undo.png
+demo
+nginx/logs/nginx.pid
