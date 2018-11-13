@@ -38,45 +38,94 @@
             <div></div>
         </div>
     </div>
-    
+
     <div class="page-border" data-wow-duration="0.7s" data-wow-delay="0.2s">
         <div class="top-border wow fadeInDown animated" style="visibility: visible; animation-name: fadeInDown;"></div>
         <div class="right-border wow fadeInRight animated" style="visibility: visible; animation-name: fadeInRight;"></div>
         <div class="bottom-border wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;"></div>
         <div class="left-border wow fadeInLeft animated" style="visibility: visible; animation-name: fadeInLeft;"></div>
     </div>
-    
+
     <div id="wrapper">
-    
         <header id="banner" class="scrollto clearfix" data-enllax-ratio=".5">
             <div id="header" class="nav-collapse">
                 <div class="row clearfix">
-                    
-                </div>
-            </div>
-        </header>
-    
-        <main id="content">
-    
-            <div id="services" class="scrollto clearfix">
-                <div class="row no-padding-bottom clearfix" >
-                    <div id="content_value">
-                    <textarea  id="appendTest" >{$data.md_mdcontent}</textarea>
+                    <div class="col-1">
+
+                        <!--Logo-->
+                        <div id="logo">
+                        </div>
+
+                        <!--Main Navigation-->
+                        <!-- <nav id="nav-main">
+                            <ul>
+                                <li>
+                                    <a href="#banner">Home</a>
+                                </li>
+                                <li>
+                                    <a href="#about">About</a>
+                                </li>
+                                <li>
+                                    <a href="#gallery">Gallery</a>
+                                </li>
+                                <li>
+                                    <a href="#services">Services</a>
+                                </li>
+                                <li>
+                                    <a href="#testimonials">Testimonials</a>
+                                </li>
+                                <li>
+                                    <a href="#clients">Clients</a>
+                                </li>
+                                <li>
+                                    <a href="#pricing">Pricing</a>
+                                </li>
+                            </ul>
+                        </nav> -->
+                        <!--End of Main Navigation-->
+
+                        <div id="nav-trigger"><span></span></div>
+                        <nav id="nav-mobile"></nav>
+
                     </div>
                 </div>
             </div>
+            <!--End of Header-->
+
+            <!--Banner Content-->
+            <div id="banner-content" class="row clearfix">
+
+                <div class="col-38">
+
+                    <div class="section-heading">
+                        <h1>Vue</h1>
+                    </div>
+                </div>
+            </div>
+            <!--End of Row-->
+        </header>
+
+        <main id="content">
+        <div id="services" class="scrollto clearfix">
+            <div class="row no-padding-bottom clearfix">
+                <div id="content_value">
+                    <textarea id="appendTest">{$data.md_mdcontent}</textarea>
+                </div>
+            </div>
+        </div>
+        </main>
     </div>
 
     <script>
         //markDown转HTMl的方法
-            editormd.markdownToHTML("content_value", {
-                htmlDecode: "style,script,iframe", //可以过滤标签解码
-                emoji: true,
-                taskList: true,
-                tex: true, // 默认不解析
-                flowChart: true, // 默认不解析
-                sequenceDiagram: true, // 默认不解析
-            });
+        editormd.markdownToHTML("content_value", {
+            htmlDecode: "style,script,iframe", //可以过滤标签解码
+            emoji: true,
+            taskList: true,
+            tex: true, // 默认不解析
+            flowChart: true, // 默认不解析
+            sequenceDiagram: true, // 默认不解析
+        });
 
     </script>
     <!-- JSflie -->

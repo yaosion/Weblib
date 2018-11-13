@@ -10,7 +10,6 @@ class Index extends Controller
     {
         $data = Db::name('md')->find();
         $this->assign('data',$data);
-        // print_r($data);
         return $this->fetch();
     }
 }
