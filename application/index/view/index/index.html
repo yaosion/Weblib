@@ -10,15 +10,16 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-    <link rel="shortcut icon" href="images/favicon.ico" title="Favicon" />
-    <link rel="stylesheet" href="static/css/style.css">
-    <link rel="stylesheet" href="static/css/namari-color.css">
-    <link rel="stylesheet" href="static/css/font-awesome.min.css">
-    <link href="static/css/animate.css" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet"
+        type="text/css">
+    <link href="static/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+    <link href="static/css/stylish-portfolio.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="static/editor/examples/css/style.css" />
     <link rel="stylesheet" href="static/editor/css/editormd.preview.css" />
-
     <script src="static/editor/examples/js/jquery.min.js"></script>
     <script src="static/editor/lib/marked.min.js"></script>
     <script src="static/editor/lib/prettify.min.js"></script>
@@ -30,94 +31,52 @@
     <script src="static/editor/editormd.js"></script>
 </head>
 
-<body>
-    <div id="preloader">
-        <div id="status" class="la-ball-triangle-path">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>
-
-    <div class="page-border" data-wow-duration="0.7s" data-wow-delay="0.2s">
-        <div class="top-border wow fadeInDown animated" style="visibility: visible; animation-name: fadeInDown;"></div>
-        <div class="right-border wow fadeInRight animated" style="visibility: visible; animation-name: fadeInRight;"></div>
-        <div class="bottom-border wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;"></div>
-        <div class="left-border wow fadeInLeft animated" style="visibility: visible; animation-name: fadeInLeft;"></div>
-    </div>
-
-    <div id="wrapper">
-        <header id="banner" class="scrollto clearfix" data-enllax-ratio=".5">
-            <div id="header" class="nav-collapse">
-                <div class="row clearfix">
-                    <div class="col-1">
-
-                        <!--Logo-->
-                        <div id="logo">
-                        </div>
-
-                        <!--Main Navigation-->
-                        <!-- <nav id="nav-main">
-                            <ul>
-                                <li>
-                                    <a href="#banner">Home</a>
-                                </li>
-                                <li>
-                                    <a href="#about">About</a>
-                                </li>
-                                <li>
-                                    <a href="#gallery">Gallery</a>
-                                </li>
-                                <li>
-                                    <a href="#services">Services</a>
-                                </li>
-                                <li>
-                                    <a href="#testimonials">Testimonials</a>
-                                </li>
-                                <li>
-                                    <a href="#clients">Clients</a>
-                                </li>
-                                <li>
-                                    <a href="#pricing">Pricing</a>
-                                </li>
-                            </ul>
-                        </nav> -->
-                        <!--End of Main Navigation-->
-
-                        <div id="nav-trigger"><span></span></div>
-                        <nav id="nav-mobile"></nav>
-
+<body id="page-top">
+    <a class="menu-toggle rounded" href="#">
+        <i class="fa fa-bars"></i>
+    </a>
+    <nav id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a class="js-scroll-trigger" href="#page-top">你需要什么？</a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a class="js-scroll-trigger" href="#page-top">Home</a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a class="js-scroll-trigger" href="#about">About</a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a class="js-scroll-trigger" href="#services">Services</a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a class="js-scroll-trigger" href="#portfolio">Portfolio</a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a class="js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+        </ul>
+    </nav>
+        <section class="content-section" id="portfolio">
+            <div class="container">
+                <div class="content-section-heading text-center">
+                    <h3 class="text-secondary mb-0">Vue.js</h3>
+                    <h2 class="mb-5">Vue-on</h2>
+                    <div id="content_value">
+                        <textarea id="appendTest">{$data.md_mdcontent}</textarea>
                     </div>
                 </div>
+        
             </div>
-            <!--End of Header-->
+        </section>
+    
+    <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
+        <i class="fa fa-angle-up"></i>
+    </a>
 
-            <!--Banner Content-->
-            <div id="banner-content" class="row clearfix">
 
-                <div class="col-38">
-
-                    <div class="section-heading">
-                        <h1>Vue</h1>
-                    </div>
-                </div>
-            </div>
-            <!--End of Row-->
-        </header>
-
-        <main id="content">
-        <div id="services" class="scrollto clearfix">
-            <div class="row no-padding-bottom clearfix">
-                <div id="content_value">
-                    <textarea id="appendTest">{$data.md_mdcontent}</textarea>
-                </div>
-            </div>
-        </div>
-        </main>
-    </div>
-
+    <!-- buildmarkdown -->
     <script>
-        //markDown转HTMl的方法
         editormd.markdownToHTML("content_value", {
             htmlDecode: "style,script,iframe", //可以过滤标签解码
             emoji: true,
@@ -126,21 +85,12 @@
             flowChart: true, // 默认不解析
             sequenceDiagram: true, // 默认不解析
         });
-
     </script>
     <!-- JSflie -->
-    <script src="static/js/jquery.1.8.3.min.js"></script>
-    <script src="static/js/wow.min.js"></script>
-    <script src="static/js/featherlight.min.js"></script>
-    <script src="static/js/featherlight.gallery.min.js"></script>
-    <script src="static/js/jquery.enllax.min.js"></script>
-    <script src="static/js/jquery.scrollUp.min.js"></script>
-    <script src="static/js/jquery.easing.min.js"></script>
-    <script src="static/js/jquery.stickyNavbar.min.js"></script>
-    <script src="static/js/jquery.waypoints.min.js"></script>
-    <script src="static/js/images-loaded.min.js"></script>
-    <script src="static/js/lightbox.min.js"></script>
-    <script src="static/js/site.js"></script>
+    <script src="static/vendor/jquery/jquery.min.js"></script>
+    <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="static/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="static/js/stylish-portfolio.min.js"></script>
 </body>
 
 </html>
