@@ -12,7 +12,7 @@ class Index extends Controller
         $TypeName = Db::name('type')->select();
         $this->assign('data',$data);
         $this->assign('TypeName',$TypeName);
-        echo "<pre>";print_r($this);
+        // echo "<pre>";print_r($this);
         return $this->fetch();
     }
 }
