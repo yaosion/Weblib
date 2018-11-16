@@ -8,11 +8,12 @@ class Index extends Controller
 {
     public function index()
     {
-        $data = Db::name('md')->find();
+    	$typeLi = "";
         $TypeName = Db::name('type')->select();
-        $this->assign('data',$data);
-        $this->assign('TypeName',$TypeName);
-        // echo "<pre>";print_r($this);
+        foreach ($TypeName as $typename) {
+        	$typeLi .= '<li class="sidebar-nav-item"><a class="js-scroll-trigger" href="/index/value_list/valuelist.html">'.$typename['type_name'].'</a></li>';
+        };
+        $this->assign('typeLi',$typeLi);
         return $this->fetch();
     }
 }
