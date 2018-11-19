@@ -40,13 +40,14 @@
             <li class="sidebar-brand">
                 <a class="js-scroll-trigger" href="/index/index">H</a>
             </li>
+            {$contentTypeLi}
         </ul>
     </nav>
         <section class="content-section" id="portfolio">
             <div class="container">
                 <div class="content-section-heading text-center">
                     <h3 class="text-secondary mb-0">content</h3>
-                    <h2 class="mb-5">内容页</h2>
+                    <h2 class="mb-5">{$data.md_typename}</h2>
                     <div id="content_value">
                     <textarea id="appendTest">{$data.md_mdcontent}</textarea>
                     </div>
