@@ -35,6 +35,6 @@ class ValueList extends Controller
     	$this->assign('moreTypeLi',$moreTypeLi);
     	$this->assign('listValue',$listValue);
     	return $this->fetch('ValueList/valuelist');
-    }
-    
+	}
+	
 }
