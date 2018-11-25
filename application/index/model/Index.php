@@ -5,11 +5,7 @@ use think\Db;
 
 class Index extends Model
 {
-    public function search($data){
-        if($data.searchValue != ''){
-            return $data;
-        }
-    }
+
 
 }
 
