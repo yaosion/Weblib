@@ -6,7 +6,6 @@ use think\Db;
 class Index extends Model
 {
 
-
 }
 
 
