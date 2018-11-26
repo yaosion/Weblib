@@ -6,7 +6,7 @@ use think\Request;
 
 class ValueList extends Controller
 {
-    public function valuelist($type_id)
+    public function valuelist($type_id,$searchValue)
     {	
     	$moreTypeLi = '';
     	$listValue = '';
@@ -30,11 +30,12 @@ class ValueList extends Controller
         	}else{
    				return;
         	};
-
+        echo $searchValue;
         $this->assign('typeName',$typeName);
     	$this->assign('moreTypeLi',$moreTypeLi);
     	$this->assign('listValue',$listValue);
     	return $this->fetch('ValueList/valuelist');
 	}
-	
+
+
 }

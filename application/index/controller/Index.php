@@ -30,9 +30,9 @@ class Index extends Controller
             // 检查，如果为空报错
             if(!$validate -> check($data)){
                 return $validate->getError();
-            };
+            }
 
-            return $data;
+            return 1;
         }     
     }
     
