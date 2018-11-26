@@ -1,9 +1,8 @@
 <?php
 namespace app\index\controller;
-// use app\admin\model\Index as IndexModel;
+
 use think\Controller;
 use think\Db;
-use think\Request;
 
 class Index extends Controller
 {

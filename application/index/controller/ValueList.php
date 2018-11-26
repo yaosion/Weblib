@@ -2,11 +2,10 @@
 namespace app\index\controller;
 use think\Controller;
 use think\Db;
-use think\Request;
 
 class ValueList extends Controller
 {
-    public function valuelist($type_id,$searchValue)
+    public function valuelist($type_id)
     {	
     	$moreTypeLi = '';
     	$listValue = '';
@@ -30,7 +29,6 @@ class ValueList extends Controller
         	}else{
    				return;
         	};
-        echo $searchValue;
         $this->assign('typeName',$typeName);
     	$this->assign('moreTypeLi',$moreTypeLi);
     	$this->assign('listValue',$listValue);

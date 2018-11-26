@@ -14,7 +14,7 @@
     <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet"
-        type="text/css">
+          type="text/css">
     <link href="/static/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
     <link href="/static/css/stylish-portfolio.min.css" rel="stylesheet">
 
@@ -32,52 +32,52 @@
 </head>
 
 <body id="page-top">
-    <a class="menu-toggle rounded" href="#">
-        <i class="fa fa-bars"></i>
-    </a>
-    <nav id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <li class="sidebar-brand">
-                <a class="js-scroll-trigger" href="/index/index">H</a>
-            </li>
-            {$moreTypeLi}
-        </ul>
-    </nav>
+<a class="menu-toggle rounded" href="#">
+    <i class="fa fa-bars"></i>
+</a>
+<nav id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+            <a class="js-scroll-trigger" href="/index/index">H</a>
+        </li>
 
-    <section class="content-section" id="portfolio">
-      <div class="container">
+    </ul>
+</nav>
+
+<section class="content-section" id="portfolio">
+    <div class="container">
         <div class="content-section-heading text-center">
-          <h3 class="text-secondary mb-0">valueList</h3>
-          <h2 class="mb-5">{$typeName.type_name}</h2>
+            <h3 class="text-secondary mb-0">searchList</h3>
+            <h2 class="mb-5"></h2>
         </div>
         <div class="row no-gutters">
-            {$listValue}
+            {$value}
         </div>
-      </div>
-    </section>
-    
-    <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
-        <i class="fa fa-angle-up"></i>
-    </a>
+    </div>
+</section>
+
+<a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
+    <i class="fa fa-angle-up"></i>
+</a>
 
 
-    <script>
-        // buildmarkdown
-        editormd.markdownToHTML("content_value", {
-            htmlDecode: "style,script,iframe", //可以过滤标签解码
-            emoji: true,
-            taskList: true,
-            tex: true, // 默认不解析
-            flowChart: true, // 默认不解析
-            sequenceDiagram: true, // 默认不解析
-        });
+<script>
+    // buildmarkdown
+    editormd.markdownToHTML("content_value", {
+        htmlDecode: "style,script,iframe", //可以过滤标签解码
+        emoji: true,
+        taskList: true,
+        tex: true, // 默认不解析
+        flowChart: true, // 默认不解析
+        sequenceDiagram: true, // 默认不解析
+    });
 
-    </script>
-    <!-- JSflie -->
-    <script src="/static/vendor/jquery/jquery.min.js"></script>
-    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="/static/js/stylish-portfolio.min.js"></script>
+</script>
+<!-- JSflie -->
+<script src="/static/vendor/jquery/jquery.min.js"></script>
+<script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="/static/js/stylish-portfolio.min.js"></script>
 </body>
 
 </html>
