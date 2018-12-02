@@ -13,7 +13,10 @@ class Index extends Controller
         foreach ($TypeName as $typename) {
         	$typeLi .= '<li class="sidebar-nav-item"><a class="js-scroll-trigger" href="/index/value_list/valuelist/type_id/'.$typename['type_id'].'">'.$typename['type_name'].'</a></li>';
         };
-        $this->assign('typeLi',$typeLi);
+        $indexAssign = [
+           'typeLi' => $typeLi,
+        ];
+        $this->assign($indexAssign);
         return $this->fetch();
     }
 

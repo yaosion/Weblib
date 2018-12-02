@@ -15,9 +15,11 @@ class MdContent extends Controller
         	$contentTypeLi .= '<li class="sidebar-nav-item"><a class="js-scroll-trigger" href="/index/md_content/mdcontent/moretype_name/'.$list['moretype_name'].'">'.$list['moretype_name'].'</a></li>';
         };
     	};
-
-    	$this->assign('data',$data);
-    	$this->assign('contentTypeLi',$contentTypeLi);
+        $mdAssign =[
+            'data' => $data,
+           'contentTypeLi'=>$contentTypeLi,
+        ];
+    	$this->assign($mdAssign);
     	return $this->fetch('MdContent/mdcontent');
     }
     

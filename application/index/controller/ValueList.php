@@ -29,9 +29,12 @@ class ValueList extends Controller
         	}else{
    				return;
         	};
-        $this->assign('typeName',$typeName);
-    	$this->assign('moreTypeLi',$moreTypeLi);
-    	$this->assign('listValue',$listValue);
+        $valueAssign =[
+            'typeName' => $typeName,
+            'moreTypeLi' => $moreTypeLi,
+            'listValue' => $listValue,
+        ];
+    	$this->assign($valueAssign);
     	return $this->fetch('ValueList/valuelist');
 	}
 

@@ -31,7 +31,10 @@ class SearchList extends Controller
         }else{
             return ;
         };
-        $this->assign('searchValue',$_searchValue);
+        $searchAssign = [
+            'searchValue' => $_searchValue,
+        ];
+        $this->assign($searchAssign);
         return $this->fetch('SearchList/searchlist');
     }
 }

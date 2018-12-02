@@ -38,7 +38,7 @@
     <nav id="sidebar-wrapper">
         <ul class="sidebar-nav list-group">
             <li class="sidebar-brand">
-                <a class="js-scroll-trigger" href="/index/index">H</a>
+                <a class="js-scroll-trigger" href="/index/index">webLib</a>
             </li>
             {$typeLi}
         </ul>
@@ -52,10 +52,20 @@
             </div>
             <form role="form" method="post">
                 <div class="form-group">
-                  <input class="form-control" name="searchValue" id="searchValue" type="text" placeholder="在这里输入您的关键字" style="padding-left: 30px;">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="input-group">
+                                <input class="form-control" name="searchValue" id="searchValue" type="text" placeholder="在这里输入您的关键字" style="padding-left: 30px;">
+                                <span class="input-group-btn">
+                                <button type="submit" id="search" class="btn btn-default">搜索</button>
+					            </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <button type="submit" id="search" class="btn btn-default">提交</button>
             </form>
+            <a href="/index/editor/editor"><button type="submit" id="goEditor" class="btn btn-default">前往编辑器</button></a>
+            </div>
         </section>
     
     <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
