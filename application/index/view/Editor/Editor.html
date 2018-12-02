@@ -40,7 +40,26 @@
         <div class="content-section-heading text-center">
             <h3 class="text-secondary mb-0">Editor</h3>
             <h2 class="mb-5"></h2>
-                <div id="test-editormd"></div>
+            <form role="form" method="post">
+            <div class="row">
+                <div class="col-lg-3">
+                    <select class="form-control" id="md_typeid">
+                        <option value="">请选择关联技术</option>
+                        {volist name="type" id="vo"}
+                        <option value="{$vo.type_id}">{$vo.type_name}</option>
+                        {/volist}
+                    </select>
+                </div>
+                <div class="col-lg-4">
+                    <input type="text" class="form-control" id="md_typename" placeholder="请填写分类">
+                </div>
+                <div class="col-lg-5">
+                    <input type="text" class="form-control" id="md_title" placeholder="请填写标题">
+                </div>
+            </div>
+            <div id="test-editormd"></div>
+            <button type="button" class="btn btn-default btn-lg" id="inputMd">提交</button>
+            </form>
         </div>
     </div>
 </section>
@@ -52,10 +71,10 @@
 
 <script>
     $(function() {
-        var testEditor = editormd("test-editormd", {
+        let testEditor = editormd("test-editormd", {
             placeholder:'本编辑器支持Markdown编辑，左边编写，右边预览',  //默认显示的文字，这里就不解释了
             width: "100%",
-            height: 800,
+            height: 600,
             syncScrolling: "single",
             path: "/static/editor/lib/",   //你的path路径（原资源文件中lib包在我们项目中所放的位置）
             theme: "default",//工具栏主题
@@ -71,6 +90,26 @@
             toolbarIcons : function() {  //自定义工具栏，后面有详细介绍
                 return editormd.toolbarModes['full']; // full, simple, mini
             },
+        });
+
+        $('#inputMd').click(function () {
+            $.ajax({
+                url:"{:url('/index/editor/add')}",
+                type:'post',
+                data:{
+                    md_typeid : $('#md_typeid').val(),
+                    md_typename : $('#md_typename').val(),
+                    md_title : $('#md_title').val(),
+                    md_mdcontent : testEditor.getMarkdown(),
+                    md_content : testEditor.getHTML(),
+                    md_time : new Date().getTime(),
+                },
+                dataType:'json',
+                success:function(res){
+                    console.log(res);
+                }
+            });
+            return false;
         });
     });
 </script>

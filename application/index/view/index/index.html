@@ -82,10 +82,11 @@
                     data:$('form').serialize(),
                     dataType:'json',
                     success:function(res){
-                        console.log(res);
                         if(res == 1){
                             location.href = '{:url("/index/search_list/searchlist")}/searchValue/'+value;
-                        }
+                        }else {
+                            alert(res);
+                        };
                     }
                 });
                 return false;
