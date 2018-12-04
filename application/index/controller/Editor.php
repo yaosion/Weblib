@@ -28,7 +28,9 @@ class Editor extends Controller
                 'md_typeid' => input('md_typeid'),
                 'md_typename' => input('md_typename'),
             ];
-            return $data;
+            if(Db::name('md')->insert($data,true)){
+                return 1;
+            }
         }
     }
 }
