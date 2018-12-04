@@ -1,9 +1,8 @@
 <?php
 
 namespace app\index\controller;
-
+use app\index\model\Editor as EditorModel;
 use think\Controller;
-use think\Request;
 use think\Db;
 class Editor extends Controller
 {
@@ -28,9 +27,13 @@ class Editor extends Controller
                 'md_typeid' => input('md_typeid'),
                 'md_typename' => input('md_typename'),
             ];
-            if(Db::name('md')->insert($data,true)){
-                return 1;
-            }
+            $_model = new EditorModel;
+            $result = $_model->add($data);
+            if($result == 1){
+                return '添加成功';
+            }else{
+                return $result;
+            };
         }
     }
 }

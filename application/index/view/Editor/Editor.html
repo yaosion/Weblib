@@ -103,11 +103,12 @@
                     md_title : $('#md_title').val(),
                     md_mdcontent : testEditor.getMarkdown(),
                     md_content : testEditor.getHTML(),
-                    // md_time : new Date().getTime(),
+                    md_time : new Date().getTime(),
                 },
                 dataType:'json',
                 success:function(res){
-                    console.log(res);
+                    alert(res);
+                    window.location.href = '/index/editor/editor';
                 }
             });
             return false;
