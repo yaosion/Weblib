@@ -1,7 +1,7 @@
 <?php
 
 namespace app\index\controller;
-
+use app\index\model\SearchList as SearchListModel;
 use think\Controller;
 use think\Db;
 
@@ -11,10 +11,9 @@ class SearchList extends Controller
     {
         $_key = $searchValue;
         $_searchValue = '';
-        $_value = Db::table('md')
-            ->where('md_typename|md_title','like','%'.$_key.'%')
-            ->select();
-        if($_value != ''){
+        $_model = new SearchListModel;
+        $_value = $_model->find($_key);
+        if($_value != 0){
             foreach ($_value as $_value) {
                 $_searchValue .=  '<div class="col-lg-3">
 		        						<a class="portfolio-item" href="/index/md_content/mdcontent/moretype_name/'.$_value['md_typename'].'">
@@ -29,8 +28,8 @@ class SearchList extends Controller
 		        	            	</div>';
             };
         }else{
-            return ;
-        };
+            $_searchValue = $_value;
+        }
         $searchAssign = [
             'searchValue' => $_searchValue,
         ];
