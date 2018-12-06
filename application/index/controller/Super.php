@@ -7,9 +7,9 @@ class Super extends Controller
 {
     public function super()
     {
-
+        $allMd = Db::name('md')->select();
         $valueAssign =[
-            'typeName' => '',
+            'allMd' => $allMd,
         ];
         $this->assign($valueAssign);
         return $this->fetch('Super/super');

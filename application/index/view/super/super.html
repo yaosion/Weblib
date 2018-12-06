@@ -21,6 +21,9 @@
     <link rel="stylesheet" href="/static/editor/examples/css/style.css" />
     <link rel="stylesheet" href="/static/editor/css/editormd.preview.css" />
     <script src="/static/editor/examples/js/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap3/js/bootstrap.js"></script>
+    <script src="/static/vendor/bootstrap3/js/bootstrap-table.js"></script>
+    <script src="/static/vendor/popper/dist/umd/popper.js"></script>
     <script src="/static/editor/lib/marked.min.js"></script>
     <script src="/static/editor/lib/prettify.min.js"></script>
     <script src="/static/editor/lib/raphael.min.js"></script>
@@ -50,15 +53,17 @@
             </tr>
             </thead>
             <tbody>
+            {volist name="allMd" id="vo"}
             <tr>
-                <td>Bangalore</td>
-                <td>560001</td>
-                <td>560001</td>
+                <td>{$vo.md_typename}</td>
+                <td>{$vo.md_title}1</td>
+                <td>{$vo.md_time}</td>
                 <td>
                     <button  class="btn-group btn-group-sm" role="group" id="revise">编辑</button>
                     <button  class="btn-group btn-group-sm" role="group" id="delete">删除</button>
                 </td>
             </tr>
+            {/volist}
             </tbody>
         </table>
     </div>
@@ -71,14 +76,11 @@
 
 <script>
     $(function () {
-        let a = $('#tableList').bootstrapTable('getSelections');
+        let a = $('#tableList').bootstrapTable();
         console.log(a);
     });
 </script>
 <!-- JSflie -->
-<script src="/static/vendor/jquery/jquery.min.js"></script>
-<script src="/static/vendor/bootstrap/js/bootstrap.js"></script>
-<script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
 <script src="/static/js/stylish-portfolio.min.js"></script>
 </body>
