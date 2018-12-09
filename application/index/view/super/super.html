@@ -46,21 +46,27 @@
         <table class="table table-hover" id="tableList">
             <thead>
             <tr>
-                <th>所属类</th>
+                <th>文章ID</th>
+                <th>所属类ID</th>
+                <th>所分类</th>
                 <th>标题</th>
                 <th>提交时间</th>
+                <th>文章状态</th>
                 <th>文章操作</th>
             </tr>
             </thead>
             <tbody>
             {volist name="allMd" id="vo"}
-            <tr>
+            <tr id="{$vo.md_id}">
+                <td>{$vo.md_id}</td>
+                <td>{$vo.md_typeid}</td>
                 <td>{$vo.md_typename}</td>
-                <td>{$vo.md_title}1</td>
+                <td>{$vo.md_title}</td>
                 <td>{$vo.md_time}</td>
+                <td>{$vo.md_status}</td>
                 <td>
-                    <button  class="btn-group btn-group-sm" role="group" id="revise">编辑</button>
-                    <button  class="btn-group btn-group-sm" role="group" id="delete">删除</button>
+                    <button  class="btn-group btn-group-sm" role="group" >编辑</button>
+                    <button  class="btn-group btn-group-sm" role="group" onclick="mdDelete({$vo.md_id})">删除</button>
                 </td>
             </tr>
             {/volist}
@@ -75,10 +81,12 @@
 
 
 <script>
-    $(function () {
-        let a = $('#tableList').bootstrapTable();
-        console.log(a);
-    });
+    function mdDelete(_id){
+        //bootstrap获取表格数据方法
+        let getValue = $("#"+_id).bootstrapTable("getSelections");
+        let _getId = getValue[0].id;
+        console.log(_getId);
+    };
 </script>
 <!-- JSflie -->
 <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
