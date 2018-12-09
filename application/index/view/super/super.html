@@ -72,6 +72,7 @@
             {/volist}
             </tbody>
         </table>
+        <a href="/index/index/index"><button type="button" class="btn btn-default btn-lg" id="backIndex" >返回主页</button></a>
     </div>
 </section>
 
@@ -85,7 +86,22 @@
         //bootstrap获取表格数据方法
         let getValue = $("#"+_id).bootstrapTable("getSelections");
         let _getId = getValue[0].id;
-        console.log(_getId);
+        $.ajax({
+            url:"{:url('/index/super/mdDelete')}",
+            type:'post',
+            data:{
+                md_id : _getId,
+            },
+            dataType:'json',
+            success:function(res){
+                if(res == 1){
+                    alert('删除成功');
+                    window.location.reload();
+                }else {
+                    alert(res);
+                }
+            }
+        });
     };
 </script>
 <!-- JSflie -->
