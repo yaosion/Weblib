@@ -65,7 +65,7 @@
                 <td>{$vo.md_time}</td>
                 <td>{$vo.md_status}</td>
                 <td>
-                    <button  class="btn-group btn-group-sm" role="group" >编辑</button>
+                    <button  class="btn-group btn-group-sm" role="group" onclick="modify({$vo.md_id})">编辑</button>
                     <button  class="btn-group btn-group-sm" role="group" onclick="mdDelete({$vo.md_id})">删除</button>
                 </td>
             </tr>
@@ -103,6 +103,14 @@
             }
         });
     };
+    function modify(_id) {
+        //bootstrap获取表格数据方法
+        let getValue = $("#"+_id).bootstrapTable("getSelections");
+        let _getId = getValue[0].id;
+        if(_getId){
+            location.href = '{:url("/index/re_editor/reeditor")}/md_id/'+_getId;
+        }
+    }
 </script>
 <!-- JSflie -->
 <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
