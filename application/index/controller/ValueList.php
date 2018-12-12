@@ -13,9 +13,9 @@ class ValueList extends Controller
     	$typeName = Db::table('type')->where('type_id',$type_id)->find();
         	if($list != ''){
         		foreach ($list as $list) {
-		        	$moreTypeLi .= '<li class="sidebar-nav-item"><a class="js-scroll-trigger" href="/index/md_content/mdcontent/moretype_name/'.$list['moretype_name'].'">'.$list['moretype_name'].'</a></li>';
+		        	$moreTypeLi .= '<li class="sidebar-nav-item"><a class="js-scroll-trigger" href="/index/md_content/mdcontent/moretype_id/'.$list['moretype_id'].'">'.$list['moretype_name'].'</a></li>';
 		        	$listValue .=  '<div class="col-lg-3">
-		        						<a class="portfolio-item" href="/index/md_content/mdcontent/moretype_name/'.$list['moretype_name'].'">
+		        						<a class="portfolio-item" href="/index/md_content/mdcontent/moretype_id/'.$list['moretype_id'].'">
 			        	              		<span class="caption">
 			        	                	<span class="caption-content">
 			        	                  	<h2>'.$list['moretype_name'].'</h2>

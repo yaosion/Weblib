@@ -24,7 +24,7 @@ class Editor extends Controller
                 'md_mdcontent' => input('md_mdcontent'),
                 'md_time' => input('md_time'),
                 'md_title' => input('md_title'),
-                'md_typeid' => input('md_typeid'),
+                'typeid' => input('typeid'),
                 'md_typename' => input('md_typename'),
             ];
             $_model = new EditorModel;

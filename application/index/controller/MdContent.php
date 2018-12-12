@@ -5,16 +5,18 @@ use think\Db;
 
 class MdContent extends Controller
 {
-    public function mdcontent($moretype_name)
+    public function mdcontent($moretype_id)
     {	
     	$contentTypeLi='';
-    	$data = Db::name('md')->where('md_typename',$moretype_name)->find();
-    	$list = Db::name('moretype')->where('type_id',$data['md_typeid'])->select();
-    	if($data != ''){
-    	foreach ($list as $list) {
-        	$contentTypeLi .= '<li class="sidebar-nav-item"><a class="js-scroll-trigger" href="/index/md_content/mdcontent/moretype_name/'.$list['moretype_name'].'">'.$list['moretype_name'].'</a></li>';
+    	//文章主题内容
+    	$data = Db::name('md')->where('md_typeid',$moretype_id)->find();
+    	//文章所属分类的同级类ID
+        $typeId = Db::name('moretype')->where('moretype_id',$data['md_typeid'])->value('type_id');
+        //同级所有的文章
+        $sameType = Db::name('moretype')->where('type_id',$typeId)->select();
+        foreach ($sameType as $sameType){
+            $contentTypeLi .= '<li class="sidebar-nav-item"><a class="js-scroll-trigger" href="/index/md_content/mdcontent/moretype_id/'.$sameType['moretype_id'].'">'.$sameType['moretype_name'].'</a></li>';
         };
-    	};
         $mdAssign =[
             'data' => $data,
            'contentTypeLi'=>$contentTypeLi,

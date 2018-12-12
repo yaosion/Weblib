@@ -43,7 +43,7 @@
             <form role="form" method="post">
                 <div class="row">
                     <div class="col-lg-3">
-                        <select class="form-control" id="md_typeid">
+                        <select class="form-control" id="typeid">
                             <option value="{$md.md_typeid}">默认技术</option>
                             {volist name="type" id="vo"}
                             <option value="{$vo.type_id}">{$vo.type_name}</option>
@@ -101,7 +101,7 @@
                 type:'post',
                 data:{
                     md_id: _mdId.pop(),
-                    md_typeid : $('#md_typeid').val(),
+                    typeid : $('#typeid').val(),
                     md_typename : $('#md_typename').val(),
                     md_title : $('#md_title').val(),
                     md_mdcontent : testEditor.getMarkdown(),

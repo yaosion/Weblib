@@ -16,7 +16,7 @@ class SearchList extends Controller
         if($_value != 0){
             foreach ($_value as $_value) {
                 $_searchValue .=  '<div class="col-lg-3">
-		        						<a class="portfolio-item" href="/index/md_content/mdcontent/moretype_name/'.$_value['md_typename'].'">
+		        						<a class="portfolio-item" href="/index/md_content/mdcontent/moretype_id/'.$_value['md_typeid'].'">
 			        	              		<span class="caption">
 			        	                	<span class="caption-content">
 			        	                  	<h2>'.$_value['md_typename'].'</h2>
