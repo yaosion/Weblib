@@ -43,7 +43,7 @@
                 <form role="form" method="post">
                     <div class="input-group">
                         <span class="input-group-addon">账号</span>
-                        <input type="text" class="form-control" placeholder="你的登录账号" name="username" id="username">
+                        <input type="text" class="form-control" placeholder="登录账号" name="username" id="username">
                     </div>
                     <br>
                     <div class="input-group">
@@ -62,7 +62,24 @@
     <i class="fa fa-angle-up"></i>
 </a>
 <script>
-
+    //Ajax
+    $(function () {
+        $('#login').click(function () {
+            $.ajax({
+                url:"{:url('/index/admin/getLoginInfo')}",
+                type:'post',
+                data:{
+                    username:$('#username').val(),
+                    password:$('#password').val(),
+                },
+                dataType:'json',
+                success:function(res){
+                    console.log(res);
+                }
+            });
+            return false;
+        });
+    });
 </script>
 <!-- JSflie -->
 <script src="/static/vendor/jquery/jquery.min.js" charset="utf-8"></script>
