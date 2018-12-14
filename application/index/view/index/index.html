@@ -48,7 +48,10 @@
                 <div class="content-section-heading text-center">
                     <h3 class="text-secondary mb-0">Weblib</h3>
                     <h2 class="mb-5">欢迎来到前端小栈</h2>
-                    <h3 class="mb-5">你可以通过右上角的导航寻找你想要的内容，也可以通过输入框输入关键字检索相关的内容</h3>
+                    {if ($userInfo)}
+                    <h3 class="mb-5" id="userCance">{$userInfo['username']},你可以自由编辑和管理自己的文章，点击这里退出登陆</h3>
+                    {else /} <h3 class="mb-5" id="userLogin">你可以通过右上角的导航寻找你想要的内容，也可以通过输入框输入关键字检索相关的内容，或者点击这里登陆</h3>
+                    {/if}
             </div>
             <form role="form" method="post">
                 <div class="form-group">
@@ -101,6 +104,30 @@
                     }
                 });
                 return false;
+            });
+
+            $('#userCance').click(function () {
+                $.ajax({
+                    url:"{:url('/index/index/userCance')}",
+                    type:'post',
+                    data: {
+                        getOut:1,
+                    },
+                    dataType:'json',
+                    success:function(res){
+                        if(res == 1){
+                            alert('注销成功');
+                            window.location.reload();
+                        }else {
+                            alert(res);
+                            window.location.reload();
+                        }
+                    }
+                });
+            });
+
+            $('#userLogin').click(function () {
+                location.href = '{:url("/index/admin/login")}';
             });
         });
     </script>

@@ -5,12 +5,22 @@ namespace app\index\controller;
 use app\index\model\Super as SuperModel;
 use think\Controller;
 use think\Db;
+use think\Session;
 
 class Super extends Controller
 {
     public function super()
     {
-        $allMd = Db::name('md')->select();
+        //判断Session是否有账号
+        //@userInfo 返回‘10’ 没有登陆账号
+        $_userId = '';
+        if(!Session::get('userInfo')){
+            $this->redirect('admin/login');
+        }else{
+            $_userInfo = Session::get('userInfo');
+            $_userId = $_userInfo['id'];
+        };
+        $allMd = Db::name('md')->where('md_belongs',$_userId)->select();
         $valueAssign =[
             'allMd' => $allMd,
         ];

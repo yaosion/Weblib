@@ -108,8 +108,13 @@
                 },
                 dataType:'json',
                 success:function(res){
-                    alert(res);
-                    location.href = '{:url("/index/editor/editor")}';
+                    if (res == 10){
+                        alert('请登录后使用编辑器');
+                        location.href = '{:url("/index/admin/login")}';
+                    } else {
+                        alert(res);
+                        location.href = '{:url("/index/editor/editor")}';
+                    }
                 }
             });
             return false;

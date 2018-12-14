@@ -4,7 +4,7 @@ namespace app\index\model;
 
 use think\Model;
 use think\Db;
-
+use think\Session;
 class Editor extends Model
 {
     public function add($data){
@@ -18,6 +18,8 @@ class Editor extends Model
             'type_id' => $data['typeid']
         ];
         if(Db::name('moretype')->insert($tdata,true)){
+            $_userInfo = Session::get('userInfo');
+            $_userId = $_userInfo['id'];
             $moreTypeId = Db::name('moretype')->where('moretype_name',$data['md_typename'])->value('moretype_id');
             $mdata = [
                 'md_content' => $data['md_content'],
@@ -26,8 +28,9 @@ class Editor extends Model
                 'md_title' => $data['md_title'],
                 'md_typeid' => $moreTypeId,
                 'md_typename' => $data['md_typename'],
+                'md_belongs' => $_userId,
             ];
-            $result=Db::name('md')->insert($mdata,true);
+            $result =  Db::name('md')->insert($mdata,true);
             if($result){
                 return 1;
             }else{

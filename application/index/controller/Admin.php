@@ -20,8 +20,11 @@ class Admin extends Controller
             ];
             $_model = new AdminModel;
             $result = $_model->getLoginInfo($data);
-
-            return $result;
+            if($result == 1){
+                return 1;
+            }else{
+                return $result;
+            }
         }
     }
 }

@@ -4,10 +4,16 @@ namespace app\index\controller;
 use app\index\model\ReEditor as ReEditorModel;
 use think\Controller;
 use think\Db;
+use think\Session;
 class ReEditor extends Controller
 {
     public function  reeditor($md_id)
     {
+        //判断Session是否有账号
+        //@userInfo 返回‘10’ 没有登陆账号
+        if(!Session::get('userInfo')){
+            $this->redirect('admin/login');
+        }
         $md = Db::name('md')->where('md_id',$md_id)->find();
         $type = Db::name('type')->select();
         $Data = [
@@ -33,7 +39,7 @@ class ReEditor extends Controller
             $_model = new ReEditorModel;
             $result = $_model->updateMd($data);
             if($result == 1){
-                return '修改成功';
+                return 1;
             }else{
                 return $result;
             };
