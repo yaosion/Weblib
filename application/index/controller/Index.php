@@ -50,7 +50,7 @@ class Index extends Controller
                 if ($result) {
                     return 1;
                 } else {
-                    return '目前暂无账号登陆';
+                    return '已注销，请重新登陆';
                 }
             }
         }
