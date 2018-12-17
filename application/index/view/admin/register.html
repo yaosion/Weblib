@@ -68,7 +68,31 @@
 </a>
 <script>
     //Ajax
-
+    $(function () {
+        $('#register').click(function () {
+            $.ajax({
+                url:"{:url('/index/admin/saveUserInfo')}",
+                type:'post',
+                data:{
+                    username:$('#username').val(),
+                    password:$('#password').val(),
+                    email:$('#email').val(),
+                    createtime:new Date().getTime(),
+                },
+                dataType:'json',
+                success:function(res){
+                    if(res == 1){
+                        alert('注册成功，点击确定返回登陆');
+                        location.href = '{:url("/index/admin/login")}';
+                    }else {
+                        alert(res);
+                        window.location.reload();
+                    }
+                }
+            });
+            return false;
+        });
+    });
 </script>
 <!-- JSflie -->
 <script src="/static/vendor/jquery/jquery.min.js" charset="utf-8"></script>
