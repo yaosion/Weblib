@@ -51,7 +51,7 @@
                 <th>所分类</th>
                 <th>标题</th>
                 <th>提交时间</th>
-                <th>文章状态</th>
+                <th>文章拥有者ID</th>
                 <th>文章操作</th>
             </tr>
             </thead>
@@ -63,7 +63,7 @@
                 <td>{$vo.md_typename}</td>
                 <td>{$vo.md_title}</td>
                 <td>{$vo.md_time}</td>
-                <td>{$vo.md_status}</td>
+                <td>{$vo.md_belongs}</td>
                 <td>
                     <button  class="btn-group btn-group-sm" role="group" onclick="modify({$vo.md_id})">编辑</button>
                     <button  class="btn-group btn-group-sm" role="group" onclick="mdDelete({$vo.md_id})">删除</button>
