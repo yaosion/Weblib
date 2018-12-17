@@ -49,10 +49,10 @@
                     <h3 class="text-secondary mb-0">Weblib</h3>
                     <h2 class="mb-5">欢迎来到前端小栈</h2>
                     {if ($userInfo)}
-                    <h3 class="mb-5" id="userCance">{$userInfo['username']},你可以自由编辑和管理自己的文章，点击这里退出登陆</h3>
-                    {else /} <h3 class="mb-5" id="userLogin">你可以通过右上角的导航寻找你想要的内容，也可以通过输入框输入关键字检索相关的内容，或者点击这里登陆</h3>
+                    <h3 class="mb-5">{$userInfo['username']},你可以自由编辑和管理自己的文章</h3>
+                    {else /} <h3 class="mb-5">您还没有登陆，不能使用编辑和管理功能，请点击下方登陆或注册</h3>
                     {/if}
-            </div>
+                </div>
             <form role="form" method="post">
                 <div class="form-group">
                     <div class="row">
@@ -67,6 +67,11 @@
                     </div>
                 </div>
             </form>
+            {if ($userInfo)}
+            <button type="submit" id="userCance" class="btn btn-default">注销</button>
+            {else /} <button type="submit" id="userLogin" class="btn btn-default">登陆</button>
+            <a href="/index/admin/register"><button type="submit" class="btn btn-default">注册</button></a>
+            {/if}
             <a href="/index/editor/editor"><button type="submit" id="goEditor" class="btn btn-default">前往编辑器</button></a>
             <a href="/index/super/super"><button type="submit" id="goSuper" class="btn btn-default">前往后台管理</button></a>
             </div>
