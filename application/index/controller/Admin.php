@@ -56,4 +56,21 @@ class Admin extends Controller
             }
         }
     }
+    public function changeUserInfo()
+    {
+        if(request()->isAjax()){
+            $data = [
+                'username' => input('username'),
+                'password' => input('password'),
+                'email' => input('email'),
+            ];
+            $_model = new AdminModel;
+            $result = $_model->changeUserInfo($data);
+            if($result == 1){
+                return 1;
+            }else{
+                return $result;
+            }
+        }
+    }
 }

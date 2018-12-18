@@ -45,4 +45,29 @@ class Admin extends Model
                 return '注册异常';
             }
     }
+
+    public function changeUserInfo($data)
+    {
+        $validate = \think\Loader::validate('Modify');
+        if(!$validate->check($data)){
+            return $validate->getError();
+        };
+        if($data['username'] == ''){
+            unset($data['username']);
+        };
+        if($data['password'] == ''){
+            $data['password'] = '123';
+        }
+        $_userInfo = Session::get('userInfo');
+        $_userId = $_userInfo['id'];
+        $_email = Db::name('user')->where('id',$_userId)->value('email');
+        unset($data['email']);
+        if(Db::name('user')->where('email', $_email)->update($data)){
+            $userData = Db::name('user')->where('id',$_userId)->field('id,ip,username')->find();
+            Session::set('userInfo',$userData);
+            return 1;
+        }else{
+            return '修改失败，请注销再登陆操作';
+        }
+    }
 }

@@ -47,23 +47,13 @@
                     </div>
                     <br>
                     <div class="input-group">
-                        <span class="input-group-addon">原账号</span>
-                        <input type="text" class="form-control" placeholder="原账号" name="usernamed" id="usernamed">
-                    </div>
-                    <br>
-                    <div class="input-group">
                         <span class="input-group-addon">新账号</span>
-                        <input type="text" class="form-control" placeholder="新账号" name="username" id="username">
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon">原密码</span>
-                        <input type="text" class="form-control" placeholder="原密码" name="passworded" id="passworded">
+                        <input type="text" class="form-control" placeholder="新账号，不填默认原账号" name="username" id="username">
                     </div>
                     <br>
                     <div class="input-group">
                         <span class="input-group-addon">新密码</span>
-                        <input type="text" class="form-control" placeholder="新密码" name="password" id="password">
+                        <input type="text" class="form-control" placeholder="新密码,，不填重置为123" name="password" id="password">
                     </div>
                     <br>
                     <button type="submit" id="modify" class="btn btn-default">修改</button>
@@ -78,7 +68,29 @@
 </a>
 <script>
     //Ajax
-
+    $(function () {
+        $('#modify').click(function () {
+            $.ajax({
+                url:"{:url('/index/admin/changeUserInfo')}",
+                type:'post',
+                data:{
+                    email:$('#email').val(),
+                    username:$('#username').val(),
+                    password:$('#password').val(),
+                },
+                dataType:'json',
+                success:function(res){
+                    if(res == 1){
+                        alert('修改成功');
+                        location.href = '{:url("/index/index/index")}';
+                    }else {
+                        alert(res);
+                    }
+                }
+            });
+            return false;
+        });
+    });
 </script>
 <!-- JSflie -->
 <script src="/static/vendor/jquery/jquery.min.js" charset="utf-8"></script>
