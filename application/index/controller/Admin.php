@@ -15,6 +15,10 @@ class Admin extends Controller
     {
         return  $this->fetch();
     }
+    public function modify()
+    {
+        return  $this->fetch();
+    }
 
     public function getLoginInfo()
     {
