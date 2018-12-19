@@ -17,9 +17,9 @@
           type="text/css">
     <link href="/static/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
     <link href="/static/css/stylish-portfolio.min.css" rel="stylesheet">
-
     <link rel="stylesheet" href="/static/editor/examples/css/style.css" />
     <link rel="stylesheet" href="/static/editor/css/editormd.preview.css" />
+
     <script src="/static/editor/examples/js/jquery.min.js"></script>
     <script src="/static/editor/lib/marked.min.js"></script>
     <script src="/static/editor/lib/prettify.min.js"></script>
@@ -29,6 +29,9 @@
     <script src="/static/editor/lib/flowchart.min.js"></script>
     <script src="/static/editor/lib/jquery.flowchart.min.js"></script>
     <script src="/static/editor/editormd.js"></script>
+
+    <link rel="stylesheet" href="/static/layui/css/layui.css" />
+
 </head>
 
 <body id="page-top">
@@ -75,7 +78,7 @@
                 dataType:'json',
                 success:function(res){
                     if(res == 1){
-                        alert('登陆成功');
+                        layer.msg('登陆成功正在跳转');
                         location.href = '{:url("/index/index/index")}';
                     }else {
                         alert(res);
@@ -91,6 +94,7 @@
 <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
 <script src="/static/js/stylish-portfolio.min.js"></script>
+<script src="/static/layui/layui.all.js"></script>
 </body>
 
 </html>
