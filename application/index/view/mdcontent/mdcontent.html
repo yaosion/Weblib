@@ -17,7 +17,7 @@
         type="text/css">
     <link href="/static/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
     <link href="/static/css/stylish-portfolio.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="/static/layui/css/layui.css" />
     <link rel="stylesheet" href="/static/editor/examples/css/style.css" />
     <link rel="stylesheet" href="/static/editor/css/editormd.preview.css" />
     <script src="/static/editor/examples/js/jquery.min.js"></script>
@@ -29,6 +29,7 @@
     <script src="/static/editor/lib/flowchart.min.js"></script>
     <script src="/static/editor/lib/jquery.flowchart.min.js"></script>
     <script src="/static/editor/editormd.js"></script>
+
 </head>
 
 <body id="page-top">
@@ -48,6 +49,7 @@
                 <div class="content-section-heading text-center">
                     <h3 class="text-secondary mb-0">content</h3>
                     <h2 class="mb-5">{$data.md_typename}</h2>
+                    <span class="layui-breadcrumb" style="visibility: visible;float: left;" onclick="pageFunc1()"><a href="javaScript:;">扩展内容</a></span>
                     <div id="content_value">
                     <textarea id="appendTest">{$data.md_mdcontent}
                     </textarea>
@@ -71,12 +73,22 @@
             flowChart: true, // 默认不解析
             sequenceDiagram: true, // 默认不解析
         });
+        function pageFunc1() {
+            layer.open({
+                type: 2,
+                area: ['700px', '450px'],
+                fixed: false, //不固定
+                maxmin: true,
+                content: '2'
+            });
+        }
     </script>
     <!-- JSflie -->
     <script src="/static/vendor/jquery/jquery.min.js"></script>
     <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="/static/js/stylish-portfolio.min.js"></script>
+    <script src="/static/layui/layui.all.js"></script>
 </body>
 
 </html>
