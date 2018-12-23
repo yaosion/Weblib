@@ -20,7 +20,11 @@ class Super extends Controller
             $_userInfo = Session::get('userInfo');
             $_userId = $_userInfo['id'];
         };
-        $allMd = Db::name('md')->where('md_belongs',$_userId)->select();
+        if($_userId == 1){
+            $allMd = Db::name('md')->select();
+        }else{
+            $allMd = Db::name('md')->where('md_belongs',$_userId)->select();
+        }
         $valueAssign =[
             'allMd' => $allMd,
         ];
