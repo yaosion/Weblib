@@ -49,7 +49,10 @@
                 <div class="content-section-heading text-center">
                     <h3 class="text-secondary mb-0">content</h3>
                     <h2 class="mb-5">{$data.md_typename}</h2>
-                    <span class="layui-breadcrumb" style="visibility: visible;float: left;" onclick="pageFunc1()"><a href="javaScript:;">扩展内容</a></span>
+                    <span class="layui-breadcrumb" lay-separator="😬" style="float: left">
+                        <a href="javaScript:;" onclick="showCase()">技巧</a>
+                        <a href="javaScript:;" onclick="showSkill()">案例</a>
+                    </span>
                     <div id="content_value">
                     <textarea id="appendTest">{$data.md_mdcontent}
                     </textarea>
@@ -57,12 +60,14 @@
                 </div>
             </div>
         </section>
-    
+
     <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
         <i class="fa fa-angle-up"></i>
     </a>
-
-
+    <!--技巧-->
+    <div id="caseContent" style="display: none">{$data.md_content}</div>
+    <!--案例-->
+    <div id="skillContent" style="display: none">{$data.md_content}</div>
     <script>
         // buildmarkdown
         editormd.markdownToHTML("content_value", {
@@ -73,13 +78,50 @@
             flowChart: true, // 默认不解析
             sequenceDiagram: true, // 默认不解析
         });
-        function pageFunc1() {
+        editormd.markdownToHTML("caseContent", {
+            htmlDecode: "style,script,iframe", //可以过滤标签解码
+            emoji: true,
+            taskList: true,
+            tex: true, // 默认不解析
+            flowChart: true, // 默认不解析
+            sequenceDiagram: true, // 默认不解析
+        });
+        editormd.markdownToHTML("skillContent", {
+            htmlDecode: "style,script,iframe", //可以过滤标签解码
+            emoji: true,
+            taskList: true,
+            tex: true, // 默认不解析
+            flowChart: true, // 默认不解析
+            sequenceDiagram: true, // 默认不解析
+        });
+        function showCase() {
+            $('#caseContent').show();
             layer.open({
-                type: 2,
-                area: ['700px', '450px'],
-                fixed: false, //不固定
-                maxmin: true,
-                content: '2'
+                type: 1,
+                title: false,
+                closeBtn: 1,
+                shadeClose: true,
+                skin: 'yourclass',
+                content: $('#caseContent'),
+                maxmin:true,
+                end:function () {
+                    $('#caseContent').hide();//关闭回调，隐藏Dom
+                }
+            });
+        }
+        function showSkill() {
+            $('#skillContent').show();
+            layer.open({
+                type: 1,
+                title: false,
+                closeBtn: 1,
+                shadeClose: true,
+                skin: 'yourclass',
+                maxmin:true,
+                content: $('#skillContent'),
+                end:function () {
+                    $('#skillContent').hide();//关闭回调，隐藏Dom
+                }
             });
         }
     </script>
