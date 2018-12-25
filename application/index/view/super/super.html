@@ -32,6 +32,7 @@
     <script src="/static/editor/lib/flowchart.min.js"></script>
     <script src="/static/editor/lib/jquery.flowchart.min.js"></script>
     <script src="/static/editor/editormd.js"></script>
+    <link rel="stylesheet" href="/static/layui/css/layui.css" />
 </head>
 
 <body id="page-top">
@@ -95,10 +96,10 @@
             dataType:'json',
             success:function(res){
                 if(res == 1){
-                    alert('删除成功');
+                    layer.msg('删除成功');
                     window.location.reload();
                 }else {
-                    alert(res);
+                    layer.msg(res);
                 }
             }
         });
@@ -115,6 +116,7 @@
 <!-- JSflie -->
 <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
 <script src="/static/js/stylish-portfolio.min.js"></script>
+<script src="/static/layui/layui.all.js"></script>
 </body>
 
 </html>

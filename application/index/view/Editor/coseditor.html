@@ -31,6 +31,8 @@
     <script src="/static/editor/lib/flowchart.min.js"></script>
     <script src="/static/editor/lib/jquery.flowchart.min.js"></script>
     <script src="/static/editor/editormd.js"></script>
+
+    <link rel="stylesheet" href="/static/layui/css/layui.css" />
 </head>
 
 <body id="page-top">
@@ -59,7 +61,7 @@
                 <br>
                 <div id="test-editormd"></div>
                 <button type="button" class="btn btn-default btn-lg" id="inputMd">提交</button>
-                <a href="/index/index/index"><button type="button" class="btn btn-default btn-lg" id="backIndex" >返回主页</button></a>
+                <button type="button" class="btn btn-default btn-lg" id="back" >返回</button>
             </form>
         </div>
     </div>
@@ -107,12 +109,14 @@
                 },
                 dataType:'json',
                 success:function(res){
-                    console.log(res);
-                    // alert(res);
-                    // location.href = '{:url("/index/index/index")}';
+                    layer.msg('添加成功');
+                    window.location.href=document.referrer;
                 }
             });
             return false;
+        });
+        $('#back').click(function () {
+            window.location.href=document.referrer;
         });
     });
 </script>
@@ -121,6 +125,7 @@
 <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
 <script src="/static/js/stylish-portfolio.min.js"></script>
+<script src="/static/layui/layui.all.js"></script>
 </body>
 
 </html>
