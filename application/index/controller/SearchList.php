@@ -3,7 +3,6 @@
 namespace app\index\controller;
 use app\index\model\SearchList as SearchListModel;
 use think\Controller;
-use think\Db;
 
 class SearchList extends Controller
 {
