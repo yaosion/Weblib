@@ -22,6 +22,14 @@ class Editor extends Controller
         return $this->fetch('Editor/editor');
     }
 
+    public function coseditor($md_id){
+        $mdData = Db::name('md')->where('md_id',$md_id)->find();
+        $cosData = [
+            'mdData' => $mdData
+        ];
+        $this->assign($cosData);
+        return  $this->fetch();
+    }
     public function add()
     {
         if(request()->isAjax()){
@@ -35,6 +43,27 @@ class Editor extends Controller
             ];
             $_model = new EditorModel;
             $result = $_model->add($data);
+            if($result == 1){
+                return '添加成功';
+            }else{
+                return $result;
+            };
+        }
+    }
+
+    public function cosAdd()
+    {
+        if(request()->isAjax()){
+            $cosData = [
+                'md_content' => input('md_content'),
+                'md_mdcontent' => input('md_mdcontent'),
+                'md_time' => input('md_time'),
+                'md_title' => input('md_title'),
+                'getType' => input('getType'),
+                'md_belongsmd' => input('md_belongsmd'),
+            ];
+            $_model = new EditorModel;
+            $result = $_model->cosAdd($cosData);
             if($result == 1){
                 return '添加成功';
             }else{

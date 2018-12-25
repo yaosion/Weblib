@@ -38,31 +38,28 @@
 <section class="content-section" id="portfolio">
     <div class="container">
         <div class="content-section-heading text-center">
-            <h3 class="text-secondary mb-0">ReEditor</h3>
+            <h3 class="text-secondary mb-0">Editor</h3>
             <h2 class="mb-5"></h2>
             <form role="form" method="post">
                 <div class="row">
-                    <div class="col-lg-3">
-                        <select class="form-control" id="typeid">
-                            <option value="{$moreType.type_id}">{$typeName}</option>
-                            {volist name="type" id="vo"}
-                            <option value="{$vo.type_id}">{$vo.type_name}</option>
-                            {/volist}
-                        </select>
-                    </div>
                     <div class="col-lg-4">
-                        <input type="text" class="form-control" id="md_typename" placeholder="请填写分类" value="{$md.md_typename}">
+                        <input type="text" class="form-control" id="md_typename"  disabled="disabled" value="{$mdData.md_typename}">
                     </div>
                     <div class="col-lg-5">
-                        <input type="text" class="form-control" id="md_title" placeholder="请填写标题" value="{$md.md_title}">
+                        <input type="text" class="form-control" id="md_title" placeholder="请填写标题">
+                    </div>
+                    <div class="col-lg-3">
+                        <select class="form-control" id="getType">
+                            <option value="">请选择类型</option>
+                            <option value = 0>案例</option>
+                            <option value = 1>技巧</option>
+                        </select>
                     </div>
                 </div>
                 <br>
-                <div id="test-editormd">
-                <textarea class="editormd-markdown-textarea" name="test-editormd-markdown-doc">{$md.md_mdcontent}</textarea>
-                </div>
-                <button type="button" class="btn btn-default btn-lg" id="inputMd">提交修改</button>
-                <a href="/index/super/super"><button type="button" class="btn btn-default btn-lg" id="backIndex" >返回管理</button></a>
+                <div id="test-editormd"></div>
+                <button type="button" class="btn btn-default btn-lg" id="inputMd">提交</button>
+                <a href="/index/index/index"><button type="button" class="btn btn-default btn-lg" id="backIndex" >返回主页</button></a>
             </form>
         </div>
     </div>
@@ -95,28 +92,23 @@
                 return editormd.toolbarModes['full']; // full, simple, mini
             },
         });
+
         $('#inputMd').click(function () {
-            let _mdId = location.href.split('/');
             $.ajax({
-                url:"{:url('/index/re_editor/updateMd')}",
+                url:"{:url('/index/editor/cosAdd')}",
                 type:'post',
                 data:{
-                    md_id: _mdId.pop(),
-                    typeid : $('#typeid').val(),
-                    md_typename : $('#md_typename').val(),
+                    getType : $('#getType').val(),
                     md_title : $('#md_title').val(),
                     md_mdcontent : testEditor.getMarkdown(),
                     md_content : testEditor.getHTML(),
                     md_time : new Date().getTime(),
+                    md_belongsmd:'{$mdData.md_id}',
                 },
                 dataType:'json',
                 success:function(res){
-                   if (res == 1){
-                       alert('修改成功');
-                       location.href = '{:url("/index/super/super")}';
-                   }else {
-                       alert(res);
-                   }
+                    alert(res);
+                    location.href = '{:url("/index/index/index")}';
                 }
             });
             return false;

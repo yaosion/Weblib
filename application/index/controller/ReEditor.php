@@ -15,10 +15,14 @@ class ReEditor extends Controller
             $this->redirect('admin/login');
         }
         $md = Db::name('md')->where('md_id',$md_id)->find();
+        $moreType = Db::name('moretype')->where('moretype_id',$md['md_typeid'])->find();
+        $typeName = Db::name('type')->where('type_id',$moreType['type_id'])->value('type_name');
         $type = Db::name('type')->select();
         $Data = [
             'md' => $md,
-            'type' => $type
+            'type' => $type,
+            'moreType' => $moreType,
+            'typeName' => $typeName
         ];
         $this->assign($Data);
         return $this->fetch('ReEditor/reeditor');

@@ -50,8 +50,13 @@
                     <h3 class="text-secondary mb-0">content</h3>
                     <h2 class="mb-5">{$data.md_typename}</h2>
                     <span class="layui-breadcrumb" lay-separator="😬" style="float: left">
+                        {if ($casemd)}
                         <a href="javaScript:;" onclick="showCase()">技巧</a>
+                        {/if}
+                        {if ($skillmd)}
                         <a href="javaScript:;" onclick="showSkill()">案例</a>
+                        {/if}
+                        <a href="/index/editor/coseditor/md_id/{$data.md_id}">感觉漏了什么？点这补充</a>
                     </span>
                     <div id="content_value">
                     <textarea id="appendTest">{$data.md_mdcontent}
@@ -65,9 +70,9 @@
         <i class="fa fa-angle-up"></i>
     </a>
     <!--技巧-->
-    <div id="caseContent" style="display: none">{$data.md_content}</div>
+    <div id="caseContent" style="display: none">{$casemd.md_content}</div>
     <!--案例-->
-    <div id="skillContent" style="display: none">{$data.md_content}</div>
+    <div id="skillContent" style="display: none">{$skillmd.md_content}</div>
     <script>
         // buildmarkdown
         editormd.markdownToHTML("content_value", {

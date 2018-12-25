@@ -40,4 +40,33 @@ class Editor extends Model
             return '添加失败';
         }
     }
+
+    public function cosAdd($cosData)
+    {
+        $validate = \think\Loader::validate('COSEditor');
+        if(!$validate->check($cosData)){
+            return $validate->getError();
+        }
+        $_userInfo = Session::get('userInfo');
+        $_userId = $_userInfo['id'];
+        if($cosData['getType'] == 0){
+            unset($cosData['getType']);
+            $cosData['md_belongs'] = $_userId;
+            $caseResult =  Db::name('casemd')->insert($cosData,true);
+            if($caseResult){
+                return 1;
+            }else{
+                return '添加失败';
+            }
+        }else if($cosData['getType'] == 1){
+            unset($cosData['getType']);
+            $cosData['md_belongs'] = $_userId;
+            $skillResult =  Db::name('skillmd')->insert($cosData,true);
+            if($skillResult){
+                return 1;
+            }else{
+                return '添加失败';
+            }
+        }
+    }
 }
