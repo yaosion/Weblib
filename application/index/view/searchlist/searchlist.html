@@ -40,9 +40,11 @@
             <h3 class="text-secondary mb-0">searchList</h3>
             <h2 class="mb-5"></h2>
         </div>
+        {if ($searchValue)}
         <div class="row no-gutters">
             {$searchValue}
         </div>
+        {/if}
     </div>
 </section>
 
@@ -52,16 +54,22 @@
 
 
 <script>
-    // buildmarkdown
-    editormd.markdownToHTML("content_value", {
-        htmlDecode: "style,script,iframe", //可以过滤标签解码
-        emoji: true,
-        taskList: true,
-        tex: true, // 默认不解析
-        flowChart: true, // 默认不解析
-        sequenceDiagram: true, // 默认不解析
+    $(function () {
+        if(!{$searchValue}){
+            layer.open({
+                type: 1,
+                skin: 'layui-layer-molv', //样式类名
+                title: false, //不显示标题栏
+                closeBtn: 0, //不显示关闭按钮
+                anim: 2,
+                shadeClose: true, //开启遮罩关闭
+                content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">很抱歉<br>该内容还没被收录呢~<br><br>如果你有好的教程分享<br><br>可以登陆后使用编辑功能<br><br>做第一个分享的人吧！！</div>',
+                end:function () {
+                    window.location.href=document.referrer;
+                }
+            });
+        }
     });
-
 </script>
 <!-- JSflie -->
 <script src="/static/vendor/jquery/jquery.min.js"></script>

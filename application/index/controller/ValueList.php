@@ -11,7 +11,7 @@ class ValueList extends Controller
     	$listValue = '';
     	$list = Db::name('moretype')->where('type_id',$type_id)->select();
     	$typeName = Db::table('type')->where('type_id',$type_id)->find();
-        	if($list != ''){
+        	if($list){
         		foreach ($list as $list) {
 		        	$moreTypeLi .= '<li class="sidebar-nav-item"><a class="js-scroll-trigger" href="/index/md_content/mdcontent/moretype_id/'.$list['moretype_id'].'">'.$list['moretype_name'].'</a></li>';
 		        	$listValue .=  '<div class="col-lg-3">
@@ -27,7 +27,8 @@ class ValueList extends Controller
 		        	            	</div>';
         	  };
         	}else{
-   				return;
+                $moreTypeLi = 0;
+                $listValue = 0;
         	};
         $valueAssign =[
             'typeName' => $typeName,

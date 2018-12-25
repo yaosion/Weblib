@@ -13,7 +13,7 @@ class SearchList extends Controller
         $_searchValue = '';
         $_model = new SearchListModel;
         $_value = $_model->find($_key);
-        if($_value != 0){
+        if($_value){
             foreach ($_value as $_value) {
                 $_searchValue .=  '<div class="col-lg-3">
 		        						<a class="portfolio-item" href="/index/md_content/mdcontent/moretype_id/'.$_value['md_typeid'].'">
@@ -28,7 +28,7 @@ class SearchList extends Controller
 		        	            	</div>';
             };
         }else{
-            $_searchValue = $_value;
+            $_searchValue = 0;
         }
         $searchAssign = [
             'searchValue' => $_searchValue,
