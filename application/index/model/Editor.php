@@ -49,9 +49,11 @@ class Editor extends Model
         }
         $_userInfo = Session::get('userInfo');
         $_userId = $_userInfo['id'];
+        $_userName = $_userInfo['username'];
         if($cosData['getType'] == 0){
             unset($cosData['getType']);
             $cosData['md_belongs'] = $_userId;
+            $cosData['md_belongsname'] = $_userName;
             $caseResult =  Db::name('casemd')->insert($cosData,true);
             if($caseResult){
                 return 1;
@@ -61,6 +63,7 @@ class Editor extends Model
         }else if($cosData['getType'] == 1){
             unset($cosData['getType']);
             $cosData['md_belongs'] = $_userId;
+            $cosData['md_belongsname'] = $_userName;
             $skillResult =  Db::name('skillmd')->insert($cosData,true);
             if($skillResult){
                 return 1;
