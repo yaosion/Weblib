@@ -57,6 +57,7 @@
                     </div>
                     <br>
                     <button type="submit" id="register" class="btn btn-default">注册</button>
+                    <button type="button" class="btn btn-default" id="back" >返回</button>
                 </form>
             </div>
         </div>
@@ -91,6 +92,9 @@
                 }
             });
             return false;
+        });
+        $('#back').click(function () {
+            window.location.href=document.referrer;
         });
     });
 </script>
