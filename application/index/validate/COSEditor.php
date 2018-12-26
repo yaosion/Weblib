@@ -8,7 +8,6 @@ class COSEditor extends Validate
     protected $rule = [
         'md_content' => 'require',
         'md_mdcontent' => 'require',
-        'md_time' => 'require',
         'md_title' => 'require',
         'getType' => 'require',
         'md_belongsmd' => 'require',
@@ -19,7 +18,6 @@ class COSEditor extends Validate
         'md_mdcontent.require' => '内容不能为空',
         'md_title.require' => '标题不能为空',
         'getType.require' => '请选择类型',
-        'md_time.require' => '时间不能为空',
         'md_belongsmd.require' => '请登陆',
     ];
     //验证场景

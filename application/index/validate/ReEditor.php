@@ -9,7 +9,6 @@ class ReEditor extends Validate
         'md_id' => 'require',
         'md_content' => 'require',
         'md_mdcontent' => 'require',
-        'md_time' => 'require',
         'md_title' => 'require',
         'typeid' => 'require',
         'md_typename' => 'require',
@@ -22,7 +21,6 @@ class ReEditor extends Validate
         'md_title.require' => '标题不能为空',
         'typeid.require' => '类型id不能为空',
         'md_typename.require' => '类型内容不能为空',
-        'md_time.require' => '时间不能为空',
     ];
     //验证场景
     protected $scene = [];

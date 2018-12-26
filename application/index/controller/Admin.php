@@ -44,7 +44,7 @@ class Admin extends Controller
                 'username' => input('username'),
                 'password' => input('password'),
                 'email' => input('email'),
-                'createtime' => input('createtime'),
+                'createtime' => $request->time(),
                 'ip' => $request->ip(),
             ];
             $_model = new AdminModel;

@@ -12,8 +12,10 @@ class Super extends Model
             return '该文已被删除';
         }else if(Db::name('md')->where('md_id',$md_id)->find()){
             $mdTypeId = Db::name('md')->where('md_id',$md_id)->value('md_typeid');
-            Db::table('moretype')->where('moretype_id',$mdTypeId)->delete();
-            Db::table('md')->where('md_id',$md_id)->delete();
+            Db::name('moretype')->where('moretype_id',$mdTypeId)->delete();
+            Db::name('casemd')->where('md_belongsmd',$md_id)->delete();
+            Db::name('skillmd')->where('md_belongsmd',$md_id)->delete();
+            Db::name('md')->where('md_id',$md_id)->delete();
             return 1;
         }else{
             return 0;

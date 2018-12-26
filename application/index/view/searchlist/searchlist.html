@@ -40,11 +40,11 @@
             <h3 class="text-secondary mb-0">searchList</h3>
             <h2 class="mb-5"></h2>
         </div>
-        {if ($searchValue)}
+        {notempty name="searchValue"}
         <div class="row no-gutters">
             {$searchValue}
         </div>
-        {/if}
+        {/notempty}
     </div>
 </section>
 

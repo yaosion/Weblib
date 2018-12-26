@@ -36,7 +36,7 @@ class Editor extends Controller
             $data = [
                 'md_content' => input('md_content'),
                 'md_mdcontent' => input('md_mdcontent'),
-                'md_time' => input('md_time'),
+                'md_time' => request()->time(),
                 'md_title' => input('md_title'),
                 'typeid' => input('typeid'),
                 'md_typename' => input('md_typename'),
@@ -57,7 +57,7 @@ class Editor extends Controller
             $cosData = [
                 'md_content' => input('md_content'),
                 'md_mdcontent' => input('md_mdcontent'),
-                'md_time' => input('md_time'),
+                'md_time' => request()->time(),
                 'md_title' => input('md_title'),
                 'getType' => input('getType'),
                 'md_belongsmd' => input('md_belongsmd'),

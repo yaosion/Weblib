@@ -63,7 +63,7 @@
                 <td>{$vo.md_typeid}</td>
                 <td>{$vo.md_typename}</td>
                 <td>{$vo.md_title}</td>
-                <td>{$vo.md_time}</td>
+                <td>{:date('Y-m-d H:i:s',$vo.md_time)}</td>
                 <td>{$vo.md_belongs}</td>
                 <td>
                     <button  class="btn-group btn-group-sm" role="group" onclick="modify({$vo.md_id})">编辑</button>

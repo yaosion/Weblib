@@ -33,7 +33,7 @@
 </head>
 
 <body id="page-top">
-    {if ($moreTypeLi)}
+    {notempty name="moreTypeLi"}
     <a class="menu-toggle rounded" href="#">
         <i class="fa fa-bars"></i>
     </a>
@@ -45,18 +45,18 @@
             {$moreTypeLi}
         </ul>
     </nav>
-    {/if}
+    {/notempty}
     <section class="content-section" id="portfolio">
       <div class="container">
         <div class="content-section-heading text-center">
           <h3 class="text-secondary mb-0">valueList</h3>
           <h2 class="mb-5">{$typeName.type_name}</h2>
         </div>
-          {if ($listValue)}
+          {notempty name="listValue"}
         <div class="row no-gutters">
             {$listValue}
         </div>
-          {/if}
+          {/notempty}
       </div>
     </section>
     

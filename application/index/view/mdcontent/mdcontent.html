@@ -50,12 +50,12 @@
                     <h3 class="text-secondary mb-0">content</h3>
                     <h2 class="mb-5">{$data.md_typename}</h2>
                     <span class="layui-breadcrumb" lay-separator="😬" style="float: left">
-                        {if ($casemd)}
+                        {notempty name="skillmd"}
                         <a href="javaScript:;" onclick="showSkill()">技巧</a>
-                        {/if}
-                        {if ($skillmd)}
+                        {/notempty}
+                        {notempty name="casemd"}
                         <a href="javaScript:;" onclick="showCase()">案例</a>
-                        {/if}
+                         {/notempty}
                         <a href="/index/editor/coseditor/md_id/{$data.md_id}">感觉漏了什么？点这补充😲</a>
                     </span>
                     <div id="content_value">
@@ -73,14 +73,32 @@
     <div id="skillContent" style="display: none">
         {volist name="skillmd" id="vo"}
         用户：{$vo.md_belongsname}
+        <br>
+        时间：{:date('Y-m-d H:i:s',$vo.md_time)}
+        <br>
         <div class="content">{$vo.md_content}</div>
+        {if $vo.md_belongs == $_userInfo.id}
+        <span class="layui-breadcrumb" lay-separator="😬" style="float: right">
+        <a href="javaScript:;" onclick="deleteSkill({$vo.md_id})">删除</a>
+        </span>
+        <br>
+        {/if}
         {/volist}
     </div>
     <!--案例-->
     <div id="caseContent" style="display: none">
         {volist name="casemd" id="vd"}
         用户：{$vd.md_belongsname}
+        <br>
+        时间：{:date('Y-m-d H:i:s',$vd.md_time)}
+        <br>
         <div class="content">{$vd.md_content}</div>
+        {if $vd.md_belongs == $_userInfo.id}
+        <span class="layui-breadcrumb" lay-separator="😬" style="float: right">
+        <a href="javaScript:;" onclick="deleteCase({$vd.md_id})">删除</a>
+        </span>
+        <br>
+        {/if}
         {/volist}
     </div>
     <script>
@@ -134,6 +152,60 @@
                 content: $('#skillContent'),
                 end:function () {
                     $('#skillContent').hide();//关闭回调，隐藏Dom
+                }
+            });
+        }
+        function deleteCase(cid) {
+            layer.msg('删除不可恢复哟~', {
+                time: 5000 //5s自动关闭
+                ,btn: ['删除', '取消']
+                ,skin:1
+                ,yes: function(index){
+                    $.ajax({
+                        url:"{:url('/index/md_content/deleteCase')}",
+                        type:'post',
+                        data:{
+                            md_id : cid,
+                        },
+                        dataType:'json',
+                        success:function(res){
+                            layer.close(index);
+                            if(res == 1){
+                                layer.msg('删除成功');
+                                location.reload();
+                            }else {
+                                layer.msg(res);
+                                location.reload();
+                            }
+                        }
+                    });
+                }
+            });
+        }
+        function deleteSkill(sid) {
+            layer.msg('删除不可恢复哟', {
+                time: 5000 //5s自动关闭
+                ,btn: ['删除', '取消']
+                ,skin:1
+                ,yes: function(index){
+                    $.ajax({
+                        url:"{:url('/index/md_content/deleteSkill')}",
+                        type:'post',
+                        data:{
+                            md_id :sid,
+                        },
+                        dataType:'json',
+                        success:function(res){
+                            layer.close(index);
+                            if(res == 1){
+                                layer.msg('删除成功');
+                                location.reload();
+                            }else {
+                                layer.msg(res);
+                                location.reload();
+                            }
+                        }
+                    });
                 }
             });
         }
