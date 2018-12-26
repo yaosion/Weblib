@@ -40,6 +40,9 @@
         <dl class="layui-nav-child">
             <dd><a href="javascript:;" id="userCance">注销</a></dd>
             <dd><a href="/index/admin/modify">修改信息</a></dd>
+            {if $userInfo['id'] == 1}
+            <dd><a href="/index/admin/maintain">管理用户</a></dd>
+            {/if}
         </dl>
         {else /}<a href="javascript:;">点此登陆</a>
         <dl class="layui-nav-child">

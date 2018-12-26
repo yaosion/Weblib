@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HGZ</title>
+
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <link rel="shortcut icon" href="/static/images/favicon.ico"/>
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet"
+          type="text/css">
+    <link href="/static/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+    <link href="/static/css/stylish-portfolio.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/editor/examples/css/style.css" />
+    <link rel="stylesheet" href="/static/editor/css/editormd.preview.css" />
+    <script src="/static/editor/examples/js/jquery.min.js"></script>
+    <script src="/static/vendor/popper/dist/umd/popper.js"></script>
+    <link rel="stylesheet" href="/static/layui/css/layui.css" />
+    <script src="/static/layui/layui.all.js"></script>
+</head>
+
+<body id="page-top">
+
+
+<section class="content-section" id="portfolio">
+    <div class="container">
+        <div class="content-section-heading text-center">
+            <h3 class="text-secondary mb-0">maintain</h3>
+            <h2 class="mb-5"></h2>
+        </div>
+        <!--表格加载div-->
+        <table class="layui-hide" id="article_tab" lay-filter="article_tab"></table>
+        <a href="/index/index/index"><button type="button" class="btn btn-default btn-lg" id="backIndex" >返回主页</button></a>
+    </div>
+</section>
+
+<a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
+    <i class="fa fa-angle-up"></i>
+</a>
+<script type="text/html" id="nav">
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="userDelete">删除</a>
+</script>
+<script type="text/javascript">
+    layui.use('table', function(){
+        var table = layui.table;
+        //渲染表格
+        table.render({
+            elem: '#article_tab'
+            ,url:"{:url('index/admin/getUser')}"
+            ,page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
+                layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
+                //,curr: 5 //设定初始在第 5 页
+                ,groups: 1 //只显示 1 个连续页码
+                ,first: false //不显示首页
+                ,last: false //不显示尾页
+
+            }
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            ,cols: [[
+                {field:'id', width:80, title: 'ID', sort: true}
+                ,{field:'username', width:150, title: '用户名'}
+                ,{field:'password', width:150, title: '密码'}
+                ,{field:'email', width:150, title: '邮箱'}
+                ,{field:'ip',width:100,title:'IP'}
+                ,{field:'createtime',width:202,title:'创建时间'}
+                ,{field:'cate_url',width:150,title:'操作',toolbar:'#nav',fixed: 'right'}
+            ]]
+        });
+        //表格工具栏
+        table.on('tool(article_tab)', function(obj){
+            var data = obj.data;
+            console.log(data);
+            if(obj.event === 'userDelete'){
+                deleteUser(data.id);
+            }
+        });
+    });
+</script>
+<script>
+    function deleteUser(uid){
+        layer.msg('确定删除该用户吗？其下所有文章都被删除', {
+            time: 5000 //5s自动关闭
+            ,btn: ['删了', '点错']
+            ,skin:1
+            ,yes: function(){
+                $.ajax({
+                    url:"{:url('/index/admin/deleteUser')}",
+                    type:'post',
+                    data:{
+                        id : uid,
+                    },
+                    dataType:'json',
+                    success:function(res){
+                        if(res == 1){
+                            layer.msg('删除成功,有关该客户的内容全部删除');
+                            window.location.reload();
+                        }else {
+                            layer.msg(res);
+                        }
+                    }
+                });
+            }
+        });
+    };
+</script>
+<!-- JSflie -->
+<script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="/static/js/stylish-portfolio.min.js"></script>
+</body>
+
+</html>

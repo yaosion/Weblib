@@ -39,7 +39,7 @@ class Super extends Controller
             $list["code"]=0;
             $list["count"]=$count;
             $list["data"]=$allMd;
-            if(empty($cate_list)){
+            if(empty($allMd)){
                 $list["msg"]="暂无数据";
             }
             //将对象转换json返回
@@ -52,7 +52,7 @@ class Super extends Controller
             $list["code"]=0;
             $list["count"]=$count;
             $list["data"]=$allMd;
-            if(empty($cate_list)){
+            if(empty($allMd)){
                 $list["msg"]="暂无数据";
             }
             //将对象转换json返回
