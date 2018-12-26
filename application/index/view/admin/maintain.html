@@ -69,7 +69,11 @@
                 ,{field:'password', width:150, title: '密码'}
                 ,{field:'email', width:150, title: '邮箱'}
                 ,{field:'ip',width:100,title:'IP'}
-                ,{field:'createtime',width:202,title:'创建时间'}
+                ,{field:'createtime',width:202,title:'创建时间',
+                    templet:function(d){
+                        return showTime(d.createtime);
+                    }
+                }
                 ,{field:'cate_url',width:150,title:'操作',toolbar:'#nav',fixed: 'right'}
             ]]
         });
@@ -109,6 +113,30 @@
             }
         });
     };
+    function showTime(cellvalue) {
+        //时间转换
+        if (cellvalue == null || cellvalue == '' || cellvalue == 0) {
+            return "";
+        }
+        var date1 = new Date(parseInt(cellvalue)*1000);
+        var month = (date1.getMonth() + 1);
+        var dates = date1.getDate();
+        var hour = date1.getHours();
+        var minutes = date1.getMinutes();
+        if (month < 10) {
+            month = "0" + month;
+        }
+        if (dates < 10) {
+            dates = "0" + dates;
+        }
+        if (hour < 10) {
+            hour = "0" + hour;
+        }
+        if (minutes < 10) {
+            minutes = "0" + minutes;
+        }
+        return date1.getFullYear() + "-" + month + "-" + dates + "&nbsp;" + hour + ":" + minutes;
+    }
 </script>
 <!-- JSflie -->
 <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>

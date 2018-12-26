@@ -70,7 +70,11 @@
                 ,{field:'md_typename', width:150, title: '分类'}
                 ,{field:'md_title', width:360, title: '标题'}
                 ,{field:'md_belongs',width:100,title:'所属'}
-                ,{field:'md_time',width:202,title:'时间'}
+                ,{field:'md_time',width:202,title:'时间',
+                    templet:function(d){
+                        return showTime(d.md_time);
+                    }
+                }
                 ,{field:'cate_url',width:150,title:'操作',toolbar:'#nav',fixed: 'right'}
             ]]
         });
@@ -116,6 +120,30 @@
         if(did){
             location.href = '{:url("/index/re_editor/reeditor")}/md_id/'+did;
         }
+    }
+    function showTime(cellvalue) {
+        //时间转换
+        if (cellvalue == null || cellvalue == '' || cellvalue == 0) {
+            return "";
+        }
+        var date1 = new Date(parseInt(cellvalue)*1000);
+        var month = (date1.getMonth() + 1);
+        var dates = date1.getDate();
+        var hour = date1.getHours();
+        var minutes = date1.getMinutes();
+        if (month < 10) {
+            month = "0" + month;
+        }
+        if (dates < 10) {
+            dates = "0" + dates;
+        }
+        if (hour < 10) {
+            hour = "0" + hour;
+        }
+        if (minutes < 10) {
+            minutes = "0" + minutes;
+        }
+        return date1.getFullYear() + "-" + month + "-" + dates + "&nbsp;" + hour + ":" + minutes;
     }
 </script>
 <!-- JSflie -->
