@@ -87,20 +87,27 @@
         //bootstrap获取表格数据方法
         let getValue = $("#"+_id).bootstrapTable("getSelections");
         let _getId = getValue[0].id;
-        $.ajax({
-            url:"{:url('/index/super/mdDelete')}",
-            type:'post',
-            data:{
-                md_id : _getId,
-            },
-            dataType:'json',
-            success:function(res){
-                if(res == 1){
-                    layer.msg('删除成功');
-                    window.location.reload();
-                }else {
-                    layer.msg(res);
-                }
+        layer.msg('删除不可恢复哟~', {
+            time: 5000 //5s自动关闭
+            ,btn: ['删除', '取消']
+            ,skin:1
+            ,yes: function(index){
+                $.ajax({
+                    url:"{:url('/index/super/mdDelete')}",
+                    type:'post',
+                    data:{
+                        md_id : _getId,
+                    },
+                    dataType:'json',
+                    success:function(res){
+                        if(res == 1){
+                            layer.msg('删除成功');
+                            window.location.reload();
+                        }else {
+                            layer.msg(res);
+                        }
+                    }
+                });
             }
         });
     };
