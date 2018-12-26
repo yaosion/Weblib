@@ -21,18 +21,9 @@
     <link rel="stylesheet" href="/static/editor/examples/css/style.css" />
     <link rel="stylesheet" href="/static/editor/css/editormd.preview.css" />
     <script src="/static/editor/examples/js/jquery.min.js"></script>
-    <script src="/static/vendor/bootstrap3/js/bootstrap.js"></script>
-    <script src="/static/vendor/bootstrap3/js/bootstrap-table.js"></script>
     <script src="/static/vendor/popper/dist/umd/popper.js"></script>
-    <script src="/static/editor/lib/marked.min.js"></script>
-    <script src="/static/editor/lib/prettify.min.js"></script>
-    <script src="/static/editor/lib/raphael.min.js"></script>
-    <script src="/static/editor/lib/underscore.min.js"></script>
-    <script src="/static/editor/lib/sequence-diagram.min.js"></script>
-    <script src="/static/editor/lib/flowchart.min.js"></script>
-    <script src="/static/editor/lib/jquery.flowchart.min.js"></script>
-    <script src="/static/editor/editormd.js"></script>
     <link rel="stylesheet" href="/static/layui/css/layui.css" />
+    <script src="/static/layui/layui.all.js"></script>
 </head>
 
 <body id="page-top">
@@ -44,35 +35,8 @@
             <h3 class="text-secondary mb-0">super</h3>
             <h2 class="mb-5"></h2>
         </div>
-        <table class="table table-hover" id="tableList">
-            <thead>
-            <tr>
-                <th>文章ID</th>
-                <th>所属类ID</th>
-                <th>所分类</th>
-                <th>标题</th>
-                <th>提交时间</th>
-                <th>文章拥有者ID</th>
-                <th>文章操作</th>
-            </tr>
-            </thead>
-            <tbody>
-            {volist name="allMd" id="vo"}
-            <tr id="{$vo.md_id}">
-                <td>{$vo.md_id}</td>
-                <td>{$vo.md_typeid}</td>
-                <td>{$vo.md_typename}</td>
-                <td>{$vo.md_title}</td>
-                <td>{:date('Y-m-d H:i:s',$vo.md_time)}</td>
-                <td>{$vo.md_belongs}</td>
-                <td>
-                    <button  class="btn-group btn-group-sm" role="group" onclick="modify({$vo.md_id})">编辑</button>
-                    <button  class="btn-group btn-group-sm" role="group" onclick="mdDelete({$vo.md_id})">删除</button>
-                </td>
-            </tr>
-            {/volist}
-            </tbody>
-        </table>
+        <!--表格加载div-->
+        <table class="layui-hide" id="article_tab" lay-filter="article_tab"></table>
         <a href="/index/index/index"><button type="button" class="btn btn-default btn-lg" id="backIndex" >返回主页</button></a>
     </div>
 </section>
@@ -80,23 +44,60 @@
 <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
     <i class="fa fa-angle-up"></i>
 </a>
+<script type="text/html" id="nav">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="modify">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="mdDelete">删除</a>
+</script>
+<script type="text/javascript">
+    layui.use('table', function(){
+        var table = layui.table;
+        //渲染表格
+        table.render({
+            elem: '#article_tab'
+            ,url:"{:url('index/super/getMd')}"
+            ,page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
+                layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
+                //,curr: 5 //设定初始在第 5 页
+                ,groups: 1 //只显示 1 个连续页码
+                ,first: false //不显示首页
+                ,last: false //不显示尾页
 
-
+            }
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            ,cols: [[
+                {field:'md_id', width:80, title: 'ID', sort: true}
+                ,{field:'md_typeid', width:100, title: '主类'}
+                ,{field:'md_typename', width:150, title: '分类'}
+                ,{field:'md_title', width:360, title: '标题'}
+                ,{field:'md_belongs',width:100,title:'所属'}
+                ,{field:'md_time',width:202,title:'时间'}
+                ,{field:'cate_url',width:150,title:'操作',toolbar:'#nav',fixed: 'right'}
+            ]]
+        });
+        //表格工具栏
+        table.on('tool(article_tab)', function(obj){
+            var data = obj.data;
+            console.log(data);
+            if(obj.event === 'modify'){
+                modify(data.md_id);
+            } else if(obj.event === 'mdDelete'){
+                mdDelete(data.md_id);
+            }
+        });
+    });
+</script>
 <script>
-    function mdDelete(_id){
-        //bootstrap获取表格数据方法
-        let getValue = $("#"+_id).bootstrapTable("getSelections");
-        let _getId = getValue[0].id;
-        layer.msg('删除不可恢复哟~', {
+    function mdDelete(mid){
+        layer.msg('删除该文后，其所关联的案例和技巧都被删除哟~', {
             time: 5000 //5s自动关闭
-            ,btn: ['删除', '取消']
+            ,btn: ['删了', '点错']
             ,skin:1
             ,yes: function(index){
                 $.ajax({
                     url:"{:url('/index/super/mdDelete')}",
                     type:'post',
                     data:{
-                        md_id : _getId,
+                        md_id : mid,
                     },
                     dataType:'json',
                     success:function(res){
@@ -111,19 +112,15 @@
             }
         });
     };
-    function modify(_id) {
-        //bootstrap获取表格数据方法
-        let getValue = $("#"+_id).bootstrapTable("getSelections");
-        let _getId = getValue[0].id;
-        if(_getId){
-            location.href = '{:url("/index/re_editor/reeditor")}/md_id/'+_getId;
+    function modify(did) {
+        if(did){
+            location.href = '{:url("/index/re_editor/reeditor")}/md_id/'+did;
         }
     }
 </script>
 <!-- JSflie -->
 <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
 <script src="/static/js/stylish-portfolio.min.js"></script>
-<script src="/static/layui/layui.all.js"></script>
 </body>
 
 </html>
