@@ -29,6 +29,7 @@
     <script src="/static/editor/lib/flowchart.min.js"></script>
     <script src="/static/editor/lib/jquery.flowchart.min.js"></script>
     <script src="/static/editor/editormd.js"></script>
+    <link rel="stylesheet" href="/static/layui/css/layui.css" />
 </head>
 
 <body id="page-top">
@@ -82,10 +83,10 @@
                 dataType:'json',
                 success:function(res){
                     if(res == 1){
-                        alert('注册成功，点击确定返回登陆');
+                        layer.msg('注册成功，点击确定返回登陆');
                         location.href = '{:url("/index/admin/login")}';
                     }else {
-                        alert(res);
+                        layer.msg(res);
                         window.location.reload();
                     }
                 }
@@ -93,7 +94,7 @@
             return false;
         });
         $('#back').click(function () {
-            window.location.href=document.referrer;
+            window.location.href='{:url("/index/index/index")}';
         });
     });
 </script>
@@ -102,6 +103,7 @@
 <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
 <script src="/static/js/stylish-portfolio.min.js"></script>
+<script src="/static/layui/layui.all.js"></script>
 </body>
 
 </html>

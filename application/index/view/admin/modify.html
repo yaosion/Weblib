@@ -29,6 +29,7 @@
     <script src="/static/editor/lib/flowchart.min.js"></script>
     <script src="/static/editor/lib/jquery.flowchart.min.js"></script>
     <script src="/static/editor/editormd.js"></script>
+    <link rel="stylesheet" href="/static/layui/css/layui.css" />
 </head>
 
 <body id="page-top">
@@ -82,17 +83,17 @@
                 dataType:'json',
                 success:function(res){
                     if(res == 1){
-                        alert('修改成功');
+                        layer.msg('修改成功');
                         location.href = '{:url("/index/index/index")}';
                     }else {
-                        alert(res);
+                        layer.msg(res);
                     }
                 }
             });
             return false;
         });
         $('#back').click(function () {
-            window.location.href=document.referrer;
+            window.location.href='{:url("/index/index/index")}';
         });
     });
 </script>
@@ -101,6 +102,7 @@
 <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
 <script src="/static/js/stylish-portfolio.min.js"></script>
+<script src="/static/layui/layui.all.js"></script>
 </body>
 
 </html>
