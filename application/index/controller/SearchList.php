@@ -4,7 +4,7 @@ namespace app\index\controller;
 use app\index\model\SearchList as SearchListModel;
 use think\Controller;
 
-class SearchList extends Controller
+class searchlist extends Controller
 {
     public function searchlist($searchValue)
     {
@@ -33,6 +33,6 @@ class SearchList extends Controller
             'searchValue' => $_searchValue,
         ];
         $this->assign($searchAssign);
-        return $this->fetch('SearchList/searchlist');
+        return $this->fetch('searchlist/searchlist');
     }
 }

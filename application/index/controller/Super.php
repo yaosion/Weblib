@@ -7,11 +7,11 @@ use think\Controller;
 use think\Db;
 use think\Session;
 
-class Super extends Controller
+class super extends Controller
 {
     public function super()
     {
-        return $this->fetch('Super/super');
+        return $this->fetch('super/super');
     }
 
     public function getMd(){

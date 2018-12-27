@@ -3,7 +3,7 @@ namespace app\index\controller;
 use think\Controller;
 use think\Db;
 
-class ValueList extends Controller
+class valuelist extends Controller
 {
     public function valuelist($type_id)
     {	
@@ -36,7 +36,7 @@ class ValueList extends Controller
             'listValue' => $listValue,
         ];
     	$this->assign($valueAssign);
-    	return $this->fetch('ValueList/valuelist');
+    	return $this->fetch('valuelist/valuelist');
 	}
 
 

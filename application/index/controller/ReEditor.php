@@ -5,7 +5,7 @@ use app\index\model\ReEditor as ReEditorModel;
 use think\Controller;
 use think\Db;
 use think\Session;
-class ReEditor extends Controller
+class reeditor extends Controller
 {
     public function  reeditor($md_id)
     {
@@ -25,7 +25,7 @@ class ReEditor extends Controller
             'typeName' => $typeName
         ];
         $this->assign($Data);
-        return $this->fetch('ReEditor/reeditor');
+        return $this->fetch('reeditor/reeditor');
     }
 
     public function updateMd()

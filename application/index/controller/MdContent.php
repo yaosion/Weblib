@@ -5,7 +5,7 @@ use think\Db;
 use think\Session;
 use app\index\model\MdContent as MdModel;
 
-class MdContent extends Controller
+class mdcontent extends Controller
 {
     public function mdcontent($moretype_id)
     {	
@@ -33,7 +33,7 @@ class MdContent extends Controller
             '_userInfo' => $_userInfo
         ];
     	$this->assign($mdAssign);
-    	return $this->fetch('MdContent/mdcontent');
+    	return $this->fetch('mdcontent/mdcontent');
     }
 
     public function deleteCase()

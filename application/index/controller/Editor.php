@@ -5,7 +5,7 @@ use app\index\model\Editor as EditorModel;
 use think\Controller;
 use think\Db;
 use think\Session;
-class Editor extends Controller
+class editor extends Controller
 {
     public function  editor()
     {
@@ -19,7 +19,7 @@ class Editor extends Controller
             'type' => $type
         ];
         $this->assign($typeData);
-        return $this->fetch('Editor/editor');
+        return $this->fetch('editor/editor');
     }
 
     public function coseditor($md_id){

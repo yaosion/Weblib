@@ -6,7 +6,7 @@ use think\Controller;
 use think\Db;
 use think\Request;
 use think\Session;
-class Admin extends Controller
+class admin extends Controller
 {
     public function login()
     {
