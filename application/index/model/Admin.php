@@ -72,17 +72,24 @@ class Admin extends Model
     }
 
     public function deleteUser($id){
-        if(Db::name('user')->where('id',$id)->find()){
-            Db::name('casemd')->where('md_belongs',$id)->delete();
-            Db::name('skillmd')->where('md_belongs',$id)->delete();
-            $mdTypeId = Db::name('md')->where('md_belongs',$id)->value('md_typeid');
-            Db::name('moretype')->where('moretype_id',$mdTypeId)->delete();
-            Db::name('md')->where('md_belongs',$id)->delete();
-            Db::name('user')->where('id',$id)->delete();
-            return 1;
+        $_userInfo = Session::get('userInfo');
+        $_userId = $_userInfo['id'];
+        if($_userId != $id){
+            if(Db::name('user')->where('id',$id)->find()){
+                Db::name('casemd')->where('md_belongs',$id)->delete();
+                Db::name('skillmd')->where('md_belongs',$id)->delete();
+                $mdTypeId = Db::name('md')->where('md_belongs',$id)->value('md_typeid');
+                Db::name('moretype')->where('moretype_id',$mdTypeId)->delete();
+                Db::name('md')->where('md_belongs',$id)->delete();
+                Db::name('user')->where('id',$id)->delete();
+                return 1;
+            }else{
+                return '没有该用户';
+            }
+        }else if($_userId == $id){
+            return '不能删除admin';
         }else{
-            return '没有该用户';
+            return '未知异常';
         }
-
     }
 }
