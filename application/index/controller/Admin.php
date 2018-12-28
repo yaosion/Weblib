@@ -68,6 +68,7 @@ class admin extends Controller
                 'username' => input('username'),
                 'password' => input('password'),
                 'email' => input('email'),
+                'modtime'=> request()->time(),
             ];
             $_model = new AdminModel;
             $result = $_model->changeUserInfo($data);

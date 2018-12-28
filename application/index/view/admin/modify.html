@@ -57,9 +57,9 @@
                         <input type="text" class="form-control" placeholder="新密码,，不填重置为123" name="password" id="password">
                     </div>
                     <br>
-                    <button type="submit" id="modify" class="btn btn-default">修改</button>
-                    <button type="button" class="btn btn-default" id="back" >返回</button>
                 </form>
+                <button type="submit" id="modify" class="btn btn-default">修改</button>
+                <button type="button" class="btn btn-default" id="back" >返回</button>
             </div>
         </div>
     </div>
@@ -83,11 +83,11 @@
                 dataType:'json',
                 success:function(res){
                     if(res == 1){
-                        layer.msg('修改成功',{time:3*1000},function() {
+                        layer.msg('修改成功',{time:1*1000},function() {
                             location.href = '{:url("/index/index/index")}';
                         });
                     }else {
-                        layer.msg(res,{time:3*1000});
+                        layer.msg(res,{time:1*1000});
                     }
                 }
             });

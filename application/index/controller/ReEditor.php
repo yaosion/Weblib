@@ -35,7 +35,7 @@ class reeditor extends Controller
                 'md_id' => input('md_id'),
                 'md_content' => input('md_content'),
                 'md_mdcontent' => input('md_mdcontent'),
-                'md_time' => request()->time(),
+                'md_modtime' => request()->time(),
                 'md_title' => input('md_title'),
                 'typeid' => input('typeid'),
                 'md_typename' => input('md_typename'),

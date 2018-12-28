@@ -25,7 +25,7 @@ class ReEditor extends Model
             $mdata = [
                 'md_content' => $data['md_content'],
                 'md_mdcontent' => $data['md_mdcontent'],
-                'md_time' => $data['md_time'],
+                'md_modtime' => $data['md_modtime'],
                 'md_title' => $data['md_title'],
                 'md_typename' => $data['md_typename'],
             ];

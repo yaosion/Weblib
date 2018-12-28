@@ -110,15 +110,15 @@
                 dataType:'json',
                 success:function(res){
                     if (res == 10){
-                        layer.msg('请登录后使用编辑器',{time:3*1000},function () {
+                        layer.msg('请登录后使用编辑器',{time:1*1000},function () {
                             location.href = '{:url("/index/admin/login")}';
                         });
                     } else if(res == 1){
-                        layer.msg('请登录后使用编辑器',{time:3*1000},function () {
+                        layer.msg('请登录后使用编辑器',{time:1*1000},function () {
                             location.href = '{:url("/index/admin/login")}';
                         });
                     }else {
-                        layer.msg(res,{time:3*1000},function () {
+                        layer.msg(res,{time:1*1000},function () {
                             window.location.reload();
                         });
                     }
