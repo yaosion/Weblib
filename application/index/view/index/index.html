@@ -121,7 +121,7 @@
                         if(res == 1){
                             location.href = '{:url("/index/search_list/searchlist")}/searchValue/'+value;
                         }else {
-                            layer.msg(res);
+                            layer.msg(res,{time:3*1000});
                         };
                     }
                 });
@@ -140,8 +140,9 @@
                         if(res == 1){
                             window.location.reload();
                         }else {
-                            layer.msg(res);
-                            window.location.reload();
+                            layer.msg(res,{time:3*1000},function() {
+                                window.location.reload();
+                            });
                         }
                     }
                 });

@@ -78,10 +78,11 @@
                 dataType:'json',
                 success:function(res){
                     if(res == 1){
-                        layer.msg('登陆成功正在跳转');
-                        location.href = '{:url("/index/index/index")}';
+                        layer.msg('登陆成功正在跳转',{time:3*1000},function() {
+                            location.href = '{:url("/index/index/index")}';
+                        });
                     }else {
-                        layer.alert(res);
+                        layer.alert(res,{time:3*1000});
                     }
                 }
             });

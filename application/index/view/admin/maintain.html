@@ -80,7 +80,6 @@
         //表格工具栏
         table.on('tool(article_tab)', function(obj){
             var data = obj.data;
-            console.log(data);
             if(obj.event === 'userDelete'){
                 deleteUser(data.id);
             }
@@ -103,10 +102,11 @@
                     dataType:'json',
                     success:function(res){
                         if(res == 1){
-                            layer.msg('删除成功,有关该客户的内容全部删除');
-                            window.location.reload();
+                            layer.msg('删除成功,有关该客户的内容全部删除',{time:3*1000},function() {
+                                window.location.reload();
+                            });
                         }else {
-                            layer.msg(res);
+                            layer.msg(res,{time:3*1000});
                         }
                     }
                 });

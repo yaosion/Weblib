@@ -23,6 +23,11 @@ class editor extends Controller
     }
 
     public function coseditor($md_id){
+        //判断Session是否有账号
+        //@userInfo 返回‘10’ 没有登陆账号
+        if(!Session::get('userInfo')){
+            $this->redirect('admin/login');
+        };
         $mdData = Db::name('md')->where('md_id',$md_id)->find();
         $cosData = [
             'mdData' => $mdData
@@ -65,7 +70,7 @@ class editor extends Controller
             $_model = new EditorModel;
             $result = $_model->cosAdd($cosData);
             if($result == 1){
-                return '添加成功';
+                return 1;
             }else{
                 return $result;
             };

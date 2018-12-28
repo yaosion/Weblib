@@ -11,6 +11,11 @@ class super extends Controller
 {
     public function super()
     {
+        //判断Session是否有账号
+        //@userInfo 返回‘10’ 没有登陆账号
+        if(!Session::get('userInfo')){
+            $this->redirect('admin/login');
+        };
         return $this->fetch('super/super');
     }
 
