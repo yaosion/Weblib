@@ -8,5 +8,8 @@
 - vscode保持最新更新
 - thinkphp版本为5.1
 - PhpStorm保持最新更新
+- FileZilla保持最新更新
+- Xshell保持最新更新
+- aliyun服务器
 
 *php和nginx服务的启动已经写成bat文件，名为start.bat和stop.bat*
