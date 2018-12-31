@@ -58,6 +58,10 @@
                          {/notempty}
                         <a href="/index/editor/coseditor/md_id/{$data.md_id}">感觉漏了什么？点这补充😲</a>
                     </span>
+                    <span class="layui-breadcrumb" lay-separator="🤗" style="float: right">
+                        <a><cite>{$mdBelongsName}</cite></a>
+                        <a ><cite>{:date('Y-m-d H:i:s',$data.md_time)}</cite></a>
+                    </span>
                     <div id="content_value">
                     <textarea id="appendTest">{$data.md_mdcontent}
                     </textarea>

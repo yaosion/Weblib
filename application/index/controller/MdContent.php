@@ -18,6 +18,7 @@ class mdcontent extends Controller
         $sameType = Db::name('moretype')->where('type_id',$typeId)->select();
         $casemd = Db::name('casemd')->where('md_belongsmd',$data['md_id'])->select();
         $skillmd = Db::name('skillmd')->where('md_belongsmd',$data['md_id'])->select();
+        $mdBelongsName = Db::name('user')->where('id',$data['md_belongs'])->value('username');
         foreach ($sameType as $sameType){
             $contentTypeLi .= '<li class="sidebar-nav-item"><a class="js-scroll-trigger" href="/index/md_content/mdcontent/moretype_id/'.$sameType['moretype_id'].'">'.$sameType['moretype_name'].'</a></li>';
         };
@@ -35,7 +36,8 @@ class mdcontent extends Controller
             'casemd' => $casemd,
             'skillmd' => $skillmd,
             'userId' => $_userId,
-            'userInfo' => $_userInfo
+            'userInfo' => $_userInfo,
+            'mdBelongsName' => $mdBelongsName,
         ];
     	$this->assign($mdAssign);
     	return $this->fetch('mdcontent/mdcontent');
