@@ -26,9 +26,6 @@ class valuelist extends Controller
 		        	            		</a>
 		        	            	</div>';
         	  };
-        	}else{
-                $moreTypeLi = 0;
-                $listValue = 0;
         	};
         $valueAssign =[
             'typeName' => $typeName,

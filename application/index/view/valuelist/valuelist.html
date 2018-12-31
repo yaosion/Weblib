@@ -63,32 +63,28 @@
     <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
         <i class="fa fa-angle-up"></i>
     </a>
-
-
-    <script>
-        $(function () {
-            if(!{$listValue}){
-                layer.open({
-                    type: 1,
-                    skin: 'layui-layer-molv', //样式类名
-                    title: false, //不显示标题栏
-                    closeBtn: 0, //不显示关闭按钮
-                    anim: 2,
-                    shadeClose: true, //开启遮罩关闭
-                    content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">很抱歉<br>该内容还没被收录呢~<br><br>如果你有好的教程分享<br><br>可以登陆后使用编辑功能<br><br>做第一个分享的人吧！！</div>',
-                    end:function () {
-                        window.location.href=document.referrer;
-                    }
-                });
-            }
-        });
-    </script>
     <!-- JSflie -->
     <script src="/static/vendor/jquery/jquery.min.js"></script>
     <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="/static/js/stylish-portfolio.min.js"></script>
     <script src="/static/layui/layui.all.js"></script>
+    {empty name="listValue"}
+    <script>
+        layer.open({
+            type: 1,
+            skin: 'layui-layer-molv', //样式类名
+            title: false, //不显示标题栏
+            closeBtn: 0, //不显示关闭按钮
+            anim: 2,
+            shadeClose: true, //开启遮罩关闭
+            content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">很抱歉<br>该内容还没被收录呢~<br><br>如果你有好的教程分享<br><br>可以登陆后使用编辑功能<br><br>做第一个分享的人吧！！</div>',
+            end:function () {
+                window.location.href=document.referrer;
+            }
+        });
+    </script>
+    {/empty}
 </body>
 
 </html>

@@ -40,6 +40,19 @@
             <h3 class="text-secondary mb-0">searchList</h3>
             <h2 class="mb-5"></h2>
         </div>
+        <form role="form" method="post">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-7 mx-auto btn-group">
+                        <input class="form-control" name="searchValue" id="searchValue" type="text" placeholder="在这里输入您的关键字" style="padding-left: 30px;text-align: center;">
+                        <button type="submit" id="search" class="btn btn-default">搜索</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <span class="layui-breadcrumb">
+            <a href="/index/index/index">返回主页😲</a>
+        </span>
         {notempty name="searchValue"}
         <div class="row no-gutters">
             {$searchValue}
@@ -51,24 +64,25 @@
 <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
     <i class="fa fa-angle-up"></i>
 </a>
-
-
 <script>
-    $(function () {
-        if(!{$searchValue}){
-            layer.open({
-                type: 1,
-                skin: 'layui-layer-molv', //样式类名
-                title: false, //不显示标题栏
-                closeBtn: 0, //不显示关闭按钮
-                anim: 2,
-                shadeClose: true, //开启遮罩关闭
-                content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">很抱歉<br>该内容还没被收录呢~<br><br>如果你有好的教程分享<br><br>可以登陆后使用编辑功能<br><br>做第一个分享的人吧！！</div>',
-                end:function () {
-                    window.location.href=document.referrer;
-                }
-            });
-        }
+    $('#search').click(function () {
+        let value = $('#searchValue').val();
+        $.ajax({
+            url:"{:url('/index/search_list/getSearch')}",
+            type:'post',
+            data:{
+                searchValue: $('#searchValue').val()
+            },
+            dataType:'json',
+            success:function(res){
+                if(res == 1){
+                    location.href = '{:url("/index/search_list/searchlist")}/searchValue/'+value;
+                }else {
+                    layer.msg(res,{time:1*1000});
+                };
+            }
+        });
+        return false;
     });
 </script>
 <!-- JSflie -->
@@ -77,6 +91,19 @@
 <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
 <script src="/static/js/stylish-portfolio.min.js"></script>
 <script src="/static/layui/layui.all.js"></script>
+{empty name="searchValue"}
+<script>
+    layer.open({
+        type: 1,
+        skin: 'layui-layer-molv', //样式类名
+        title: false, //不显示标题栏
+        closeBtn: 0, //不显示关闭按钮
+        anim: 2,
+        shadeClose: true, //开启遮罩关闭
+        content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">很抱歉<br>暂无你想搜索的内容<br><br>可以尝试更换关键字<br><br>也可以返回主页根据导航选择<br><br>或者登陆做第一个分享的人吧！！</div>',
+    });
+</script>
+{/empty}
 </body>
 
 </html>

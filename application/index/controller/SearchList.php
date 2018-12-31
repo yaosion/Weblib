@@ -2,6 +2,7 @@
 
 namespace app\index\controller;
 use app\index\model\SearchList as SearchListModel;
+use app\index\model\Index as IndexModel;
 use think\Controller;
 
 class searchlist extends Controller
@@ -34,5 +35,20 @@ class searchlist extends Controller
         ];
         $this->assign($searchAssign);
         return $this->fetch('searchlist/searchlist');
+    }
+
+    public function getSearch(){
+        if(request()->isAjax()){
+            $data = [
+                'searchValue' => input('searchValue'),
+            ];
+            $_model = new IndexModel;
+            $result = $_model->search($data);
+            if($result == 1){
+                return 1;
+            }else{
+                return $result;
+            }
+        }
     }
 }
