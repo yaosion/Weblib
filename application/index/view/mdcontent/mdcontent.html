@@ -77,7 +77,7 @@
         时间：{:date('Y-m-d H:i:s',$vo.md_time)}
         <br>
         <div class="content">{$vo.md_content}</div>
-        {if $vo.md_belongs == $_userInfo.id}
+        {if $vo.md_belongs == $userId}
         <span class="layui-breadcrumb" lay-separator="😬" style="float: right">
         <a href="javaScript:;" onclick="deleteSkill({$vo.md_id})">删除</a>
         </span>
@@ -93,7 +93,7 @@
         时间：{:date('Y-m-d H:i:s',$vd.md_time)}
         <br>
         <div class="content">{$vd.md_content}</div>
-        {if $vd.md_belongs == $_userInfo.id}
+        {if $vd.md_belongs == $userId}
         <span class="layui-breadcrumb" lay-separator="😬" style="float: right">
         <a href="javaScript:;" onclick="deleteCase({$vd.md_id})">删除</a>
         </span>

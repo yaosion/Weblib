@@ -21,16 +21,21 @@ class mdcontent extends Controller
         foreach ($sameType as $sameType){
             $contentTypeLi .= '<li class="sidebar-nav-item"><a class="js-scroll-trigger" href="/index/md_content/mdcontent/moretype_id/'.$sameType['moretype_id'].'">'.$sameType['moretype_name'].'</a></li>';
         };
+        $_userId = '';
         $_userInfo = '';
         if(Session::get('userInfo')){
             $_userInfo = Session::get('userInfo');
+            $_userId = $_userInfo['id'];
+        }else{
+            $_userId = -1;
         }
         $mdAssign =[
             'data' => $data,
            'contentTypeLi'=> $contentTypeLi,
             'casemd' => $casemd,
             'skillmd' => $skillmd,
-            '_userInfo' => $_userInfo
+            'userId' => $_userId,
+            'userInfo' => $_userInfo
         ];
     	$this->assign($mdAssign);
     	return $this->fetch('mdcontent/mdcontent');
