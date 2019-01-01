@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HGZ</title>
+
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <link rel="shortcut icon" href="/static/images/favicon.ico"/>
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet"
+          type="text/css">
+    <link href="/static/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+    <link href="/static/css/stylish-portfolio.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/editor/examples/css/style.css" />
+    <link rel="stylesheet" href="/static/editor/css/editormd.preview.css" />
+    <link rel="stylesheet" href="/static/editor/css/editormd.css" />
+    <link rel="stylesheet" href="/static/editor/css/editormd.logo.css" />
+    <script src="/static/editor/examples/js/jquery.min.js"></script>
+    <script src="/static/editor/lib/marked.min.js"></script>
+    <script src="/static/editor/lib/prettify.min.js"></script>
+    <script src="/static/editor/lib/raphael.min.js"></script>
+    <script src="/static/editor/lib/underscore.min.js"></script>
+    <script src="/static/editor/lib/sequence-diagram.min.js"></script>
+    <script src="/static/editor/lib/flowchart.min.js"></script>
+    <script src="/static/editor/lib/jquery.flowchart.min.js"></script>
+    <script src="/static/editor/editormd.js"></script>
+
+    <link rel="stylesheet" href="/static/layui/css/layui.css" />
+</head>
+
+<body id="page-top">
+
+<section class="content-section" id="portfolio">
+    <div class="container">
+        <div class="content-section-heading text-center">
+            <h3 class="text-secondary mb-0">Editor</h3>
+            <h2 class="mb-5"></h2>
+            <form role="form" method="post">
+            <div class="row">
+                <div class="col-lg-3">
+                    <select class="form-control" id="typeid">
+                        <option value="">请选择关联技术</option>
+                        {volist name="type" id="vo"}
+                        <option value="{$vo.type_id}">{$vo.type_name}</option>
+                        {/volist}
+                    </select>
+                </div>
+                <div class="col-lg-4">
+                    <input type="text" class="form-control" id="md_typename" placeholder="请填写分类">
+                </div>
+                <div class="col-lg-5">
+                    <input type="text" class="form-control" id="md_title" placeholder="请填写标题">
+                </div>
+            </div>
+                <br>
+            <div id="test-editormd"></div>
+            <button type="button" class="btn btn-default btn-lg" id="inputMd">提交</button>
+            <button type="button" class="btn btn-default btn-lg" id="back" >返回</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
+    <i class="fa fa-angle-up"></i>
+</a>
+
+<script>
+    $(function() {
+        let testEditor = editormd("test-editormd", {
+            placeholder:'本编辑器支持Markdown编辑，最少150字',  //默认显示的文字，这里就不解释了
+            width: "100%",
+            height: 600,
+            syncScrolling: "single",
+            path: "/static/editor/lib/",   //你的path路径（原资源文件中lib包在我们项目中所放的位置）
+            theme: "default",//工具栏主题
+            previewTheme: "default",//预览主题
+            editorTheme: "monokai",//编辑主题
+            saveHTMLToTextarea: true,
+            emoji: false,
+            taskList: true,
+            tocm: true,         // Using [TOCM]
+            tex: true,                   // 开启科学公式TeX语言支持，默认关闭
+            flowChart: true,             // 开启流程图支持，默认关闭
+            sequenceDiagram: true,       // 开启时序/序列图支持，默认关闭,
+            toolbarIcons : function() {  //自定义工具栏，后面有详细介绍
+                return editormd.toolbarModes['full']; // full, simple, mini
+            },
+        });
+
+        $('#inputMd').click(function () {
+            $.ajax({
+                url:"{:url('/index/editor/add')}",
+                type:'post',
+                data:{
+                    typeid : $('#typeid').val(),
+                    md_typename : $('#md_typename').val(),
+                    md_title : $('#md_title').val(),
+                    md_mdcontent : testEditor.getMarkdown(),
+                    md_content : testEditor.getHTML(),
+                },
+                dataType:'json',
+                success:function(res){
+                    if (res == 10){
+                        layer.msg('请登录后使用编辑器',{time:1*1000},function () {
+                            location.href = '{:url("/index/admin/login")}';
+                        });
+                    } else if(res == 1){
+                        layer.msg('请登录后使用编辑器',{time:1*1000},function () {
+                            location.href = '{:url("/index/admin/login")}';
+                        });
+                    }else {
+                        layer.msg(res,{time:1*1000},function () {
+                            window.location.reload();
+                        });
+                    }
+                }
+            });
+            return false;
+        });
+        $('#back').click(function () {
+            window.location.href='{:url("/index/index/index")}';
+        });
+    });
+</script>
+<!-- JSflie -->
+<script src="/static/vendor/jquery/jquery.min.js"></script>
+<script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="/static/js/stylish-portfolio.min.js"></script>
+<script src="/static/layui/layui.all.js"></script>
+</body>
+
+</html>
