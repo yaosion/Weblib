@@ -17,9 +17,9 @@
           type="text/css">
     <link href="/static/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
     <link href="/static/css/stylish-portfolio.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="/static/editor/examples/css/style.css" />
     <link rel="stylesheet" href="/static/editor/css/editormd.preview.css" />
-
     <script src="/static/editor/examples/js/jquery.min.js"></script>
     <script src="/static/editor/lib/marked.min.js"></script>
     <script src="/static/editor/lib/prettify.min.js"></script>
@@ -29,37 +29,32 @@
     <script src="/static/editor/lib/flowchart.min.js"></script>
     <script src="/static/editor/lib/jquery.flowchart.min.js"></script>
     <script src="/static/editor/editormd.js"></script>
-
     <link rel="stylesheet" href="/static/layui/css/layui.css" />
-
 </head>
 
 <body id="page-top">
 <section class="content-section" id="portfolio">
     <div class="container">
         <div class="content-section-heading text-center">
-            <h3 class="text-secondary mb-0">Login</h3>
-            <h2 class="mb-5">登陆</h2>
+            <h3 class="text-secondary mb-0">Forget</h3>
+            <h2 class="mb-5">验证邮箱</h2>
         </div>
         <div class="row">
             <div class="mb-5 mx-auto">
-                <span class="layui-breadcrumb" style="float: right;">
-                     <a href="/index/admin/forgetpwd">忘记密码？😭</a>
-                </span>
                 <form role="form" method="post">
                     <div class="input-group">
                         <span class="input-group-addon">账号</span>
-                        <input type="text" class="form-control" placeholder="登录账号" name="username" id="username">
+                        <input type="text" class="form-control" placeholder="注册时账号" name="username" id="username">
                     </div>
                     <br>
                     <div class="input-group">
-                        <span class="input-group-addon">密码</span>
-                        <input type="text" class="form-control" placeholder="登陆密码" name="password" id="password">
+                        <span class="input-group-addon">邮箱</span>
+                        <input type="text" class="form-control" placeholder="注册时绑定的邮箱" name="email" id="email">
                     </div>
                     <br>
+                    <button type="submit" id="register" class="btn btn-default">验证</button>
+                    <button type="button" class="btn btn-default" id="back" >返回</button>
                 </form>
-                <button type="submit" id="login" class="btn btn-default">登陆</button>
-                <a href="/index/admin/register"><button type="submit" id="goRegister" class="btn btn-default">注册</button></a>
             </div>
         </div>
     </div>
@@ -71,26 +66,29 @@
 <script>
     //Ajax
     $(function () {
-        $('#login').click(function () {
+        $('#register').click(function () {
             $.ajax({
-                url:"{:url('/index/admin/getLoginInfo')}",
+                url:"{:url('/index/admin/fogetPassWord')}",
                 type:'post',
                 data:{
                     username:$('#username').val(),
-                    password:$('#password').val(),
+                    email:$('#email').val(),
                 },
                 dataType:'json',
                 success:function(res){
                     if(res == 1){
-                        layer.msg('登陆成功正在跳转',{time:1*1000},function() {
-                            location.href = '{:url("/index/index/index")}';
+                        layer.msg('验证成功正在跳转',{time:1*1000},function() {
+                            location.href = '{:url("/index/admin/modify")}';
                         });
                     }else {
-                        layer.msg(res,{time:1*1000});
+                        layer.msg('验证失败，请检查账号和邮箱',{time:1*1000});
                     }
                 }
             });
             return false;
+        });
+        $('#back').click(function () {
+            window.location.href='{:url("/index/index/index")}';
         });
     });
 </script>

@@ -54,6 +54,8 @@ class Admin extends Model
         };
         if($data['username'] == ''){
             unset($data['username']);
+        }else if(Db::name('user')->where('username',$data['username'])->select()){
+            return '该名已被注册';
         };
         if($data['password'] == ''){
             $data['password'] = '123';
@@ -63,9 +65,12 @@ class Admin extends Model
         $_email = Db::name('user')->where('id',$_userId)->value('email');
         unset($data['email']);
         if(Db::name('user')->where('email', $_email)->update($data)){
-            $userData = Db::name('user')->where('id',$_userId)->field('id,ip,username')->find();
-            Session::set('userInfo',$userData);
-            return 1;
+            $result = session(null);
+            if ($result){
+                return '修改失败';
+            }else{
+                return 1;
+            }
         }else{
             return '修改失败，请注销再登陆操作';
         }
@@ -90,6 +95,22 @@ class Admin extends Model
             return '不能删除admin';
         }else{
             return '未知异常';
+        }
+    }
+
+    public function fogetPassWord($_forget)
+    {
+        $validate = \think\Loader::validate('ForgetPWD');
+        if(!$validate->check($_forget)){
+            return $validate->getError();
+        };
+        $_email = Db::name('user')->where('username',$_forget['username'])->value('email');
+        if($_email === $_forget['email']){
+            $userData = Db::name('user')->where('email',$_forget['email'])->field('id,ip,username')->find();
+            Session::set('userInfo',$userData);
+            return 1;
+        }else {
+            return 0;
         }
     }
 }

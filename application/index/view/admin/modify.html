@@ -83,8 +83,8 @@
                 dataType:'json',
                 success:function(res){
                     if(res == 1){
-                        layer.msg('修改成功',{time:1*1000},function() {
-                            location.href = '{:url("/index/index/index")}';
+                        layer.msg('已修改请重新登陆',{time:1*1000},function() {
+                            location.href = '{:url("/index/admin/login")}';
                         });
                     }else {
                         layer.msg(res,{time:1*1000});

@@ -18,9 +18,17 @@ class admin extends Controller
     }
     public function modify()
     {
-        return  $this->fetch();
+        if(!Session::get('userInfo')){
+            $this->redirect('admin/login');
+        }else{
+            return  $this->fetch();
+        }
     }
     public function maintain()
+    {
+        return  $this->fetch();
+    }
+    public function forgetpwd()
     {
         return  $this->fetch();
     }
@@ -119,6 +127,19 @@ class admin extends Controller
             $id = input('id');
             $_model = new AdminModel;
             $result = $_model->deleteUser($id);
+            return $result;
+        }
+    }
+
+    public function fogetPassWord()
+    {
+        if(request()->isAjax()){
+            $_forget = [
+                'username' => input('username'),
+                'email' => input('email')
+            ];
+            $_model = new AdminModel;
+            $result = $_model->fogetPassWord($_forget);
             return $result;
         }
     }
