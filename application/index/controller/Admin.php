@@ -26,7 +26,11 @@ class admin extends Controller
     }
     public function maintain()
     {
-        return  $this->fetch();
+        if(!Session::get('userInfo')){
+            $this->redirect('admin/login');
+        }else{
+            return  $this->fetch();
+        }
     }
     public function forgetpwd()
     {
